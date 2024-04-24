@@ -2,7 +2,7 @@ package files.pic;
 
 public class Main {
 
-    private Client client;
+    private final Client client;
 
     public Main() {
         this.client = new Client();
@@ -10,7 +10,7 @@ public class Main {
 
 
     public void start() {
-        this.getClient().searchMovie("The Game");
+        this.getClient().searchMovie("Naruto");
         this.getClient().getSearch().sortMovies("popularity");
         this.getClient().getSearch().drawResult("popularity");
         //System.out.println(search.getActualMovies().get(0).getType("poster_path"));;
