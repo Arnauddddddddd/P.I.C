@@ -3,7 +3,6 @@ package files.pic;
 public class Main {
 
     private Client client;
-    private API api;
 
     public Main() {
         this.client = new Client();
