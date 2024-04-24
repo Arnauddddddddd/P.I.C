@@ -43,14 +43,11 @@ public class Search {
                 if (fl1 < fl2) {
                     minimum = j;
                 }
-                System.out.println(fl1);
-                System.out.println(fl2);
 
                 Movie temp = actualMovies.get(i);
                 actualMovies.set(i, actualMovies.get(minimum));
                 actualMovies.set(minimum, temp);
             }
         }
-        System.out.println(actualMovies);
     }
 }

@@ -2,7 +2,9 @@ package files.pic;
 
 
 import java.util.ArrayList;
-import files.pic.movie.*;
+import files.pic.movie.Movie;
+import files.pic.movie.MovieSeen;
+
 
 
 public class Client {
