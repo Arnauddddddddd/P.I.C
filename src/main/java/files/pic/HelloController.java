@@ -11,7 +11,7 @@ public class HelloController {
     protected void onHelloButtonClick() {
         Main main = new Main();
         main.start();
-        welcomeText.setText(main.getSearch().getActualMovies().get(0).getTitle());
+        welcomeText.setText(main.getClient().getSearch().getActualMovies().get(0).getTitle());
 
     
     }

@@ -4,7 +4,7 @@ import okhttp3.*;
 import org.json.*;
 
 
-public class TMDBClient {
+public class API {
 
     public JSONArray search(String str) {
 

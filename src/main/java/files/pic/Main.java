@@ -3,34 +3,22 @@ package files.pic;
 public class Main {
 
     private Client client;
-    private Search search;
-    private TMDBClient tmdbClient;
+    private API api;
 
     public Main() {
-        this.search = new Search();
-        this.client = new Client(search);
-        this.tmdbClient = new TMDBClient();
-
+        this.client = new Client();
     }
 
 
     public void start() {
-        search.setActualMovies(tmdbClient.search("Star wars"));
-        search.sortMovies("popularity");
-        search.drawResult("popularity");
+        this.getClient().searchMovie("The Game");
+        this.getClient().getSearch().sortMovies("popularity");
+        this.getClient().getSearch().drawResult("popularity");
         //System.out.println(search.getActualMovies().get(0).getType("poster_path"));;
     }
 
     public Client getClient() {
         return client;
-    }
-
-    public Search getSearch() {
-        return search;
-    }
-
-    public TMDBClient getTmdbClient() {
-        return tmdbClient;
     }
 
 

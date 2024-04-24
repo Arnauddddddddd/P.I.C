@@ -3,13 +3,21 @@ package files.pic;
 import org.json.*;
 
 import files.pic.movie.*;
+
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Search {
     private ArrayList<Movie> actualMovies;
+    private API api;
 
     public Search() {
         this.actualMovies = new ArrayList<Movie>();
+        this.api = new API();
+    }
+
+    public API getApi() {
+        return api;
     }
 
     public void setActualMovies(JSONArray jsonList) {
@@ -49,5 +57,6 @@ public class Search {
                 actualMovies.set(minimum, temp);
             }
         }
+        Collections.reverse(actualMovies);
     }
 }

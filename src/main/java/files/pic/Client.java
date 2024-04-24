@@ -12,10 +12,14 @@ public class Client {
     private ArrayList<MovieSeen> moviesSeen;
     private ArrayList<Movie> moviesToWatch;
 
-    public Client(Search search) {
-        this.search = search;
+    public Client() {
+        search = new Search();
         moviesSeen = new ArrayList<>();
         moviesToWatch = new ArrayList<>();
+    }
+
+    public void searchMovie(String movie) {
+        getSearch().setActualMovies(getSearch().getApi().search(movie));
     }
 
     public Search getSearch() {
