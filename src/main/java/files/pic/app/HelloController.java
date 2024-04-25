@@ -1,5 +1,6 @@
-package files.pic;
+package files.pic.app;
 
+import files.pic.Main;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,12 +14,6 @@ import javafx.stage.Stage;
 import org.controlsfx.control.textfield.CustomTextField;
 
 public class HelloController {
-    public Button buttonCloseSearch;
-    public CustomTextField fieldSearch;
-    public Button buttonSearchUp;
-    public Button buttonSearchDown;
-    public Label labelMatches;
-    public ToolBar barSearch;
     public TextField searchBox;
     @FXML
     private Label welcomeText;

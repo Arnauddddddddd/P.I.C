@@ -11,4 +11,6 @@ module files.pic {
 
     opens files.pic to javafx.fxml;
     exports files.pic;
+    exports files.pic.app;
+    opens files.pic.app to javafx.fxml;
 }
