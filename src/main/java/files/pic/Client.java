@@ -54,4 +54,8 @@ public class Client {
         MovieSeen moviesSeen = new MovieSeen(movie);
         this.moviesSeen.add(moviesSeen);
     }
+
+    public void search(String text) {
+        searchMovie(text);
+    }
 }

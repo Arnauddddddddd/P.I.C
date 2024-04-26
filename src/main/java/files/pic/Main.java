@@ -28,7 +28,6 @@ public class Main extends Application {
         return client;
     }
 
-
     public static void main(String[] args) {
         launch();
     }

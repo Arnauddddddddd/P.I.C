@@ -11,6 +11,14 @@
 
 
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.StackPane?>
+
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="files.pic.app.HelloController">
   <padding>
@@ -22,5 +30,6 @@
     <Button text="Rechercher" onAction="#onHelloButtonClick" StackPane.alignment="CENTER_RIGHT"/>
   </StackPane>
 
+    <ListView fx:id="listView" VBox.vgrow="ALWAYS"/>
 
 </VBox>
