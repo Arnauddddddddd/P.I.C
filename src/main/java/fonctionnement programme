@@ -1,0 +1,53 @@
+FONCTIONNEMENT DU PROGRAMME SIMPLIFIEE (hors interface graphique) (26/04/24) :
+
+Le programme est composée des différentes classes suivantes : Main, Client, Search, API, (Movie, MovieSeen)
+
+
+
+Main : la classe où code source commence l'exécution, ici, 
+	on crééra un object de la classe Client
+	
+	
+	
+
+Client : la classe qui représente le client, il possède 
+	-une arraylist de films vus (MovieSeen)			// getMoviesToWatch()
+	-une arraylist de films à voir (Movie)			// getMoviesSeen()
+	-une recherche (Search)       				    // getSearch()
+	
+	
+	        permet de faire la recherche directement à l'API -->  searchMovie(String movie)
+	        						qui correspond à "" getSearch().setActualMovies(getSearch().getApi().search(movie)) ""
+
+						
+
+Search : la classe qui permet de faire une requete à l'API, permet de trier des films de la recherche, il possède donc :
+	-une arraylist des films de la recherche actuelle 	        // getActualMovies()
+        -un object "API"                                        // getApi()
+        
+
+
+
+API : permet de faire la recherche en mettant en paramètre un string.
+
+
+donc pour une recherche 
+
+Main -->  Client -->  Search  -->  API
+
+mais comme dit plus haut --> on peut direct passé de Client à API (searchMovie(String movie))
+
+
+
+Movie : le fichier Json du film est converti en plusieurs attributs:
+
+	    -title	     (string)
+	    -popularity (float)
+    	-voteAverage (float)
+    	-poster      (string, il sera converti direct en image dans l'interface graphique)
+    	-type        (json, pour récupéré les autres infos : https://developer.themoviedb.org/reference/search-movie
+    	
+    	
+MovieSeen : héritage de Movie, il a tout pareil mais possède deux attributs en +
+	  -note   (int)
+	  -commentary   (string)
