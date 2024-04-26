@@ -42,21 +42,17 @@ public class Search {
     }
 
     public void sortMovies(String type) {
-
         for (int i = 0; i < actualMovies.size() - 1; i++) {
-            int minimum = i;
             for (int j = i + 1; j < actualMovies.size(); j++) {
-                float fl1 = Float.parseFloat(actualMovies.get(j).getType(type).toString());
-                float fl2 = Float.parseFloat(actualMovies.get(minimum).getType(type).toString());
-                if (fl1 < fl2) {
-                    minimum = j;
+                float fl1 = Float.parseFloat(actualMovies.get(i).getType(type).toString());
+                float fl2 = Float.parseFloat(actualMovies.get(j).getType(type).toString());
+                if (fl1 > fl2) {
+                    Movie temp = actualMovies.get(i);
+                    actualMovies.set(i, actualMovies.get(j));
+                    actualMovies.set(j, temp);
                 }
-
-                Movie temp = actualMovies.get(i);
-                actualMovies.set(i, actualMovies.get(minimum));
-                actualMovies.set(minimum, temp);
             }
         }
-        Collections.reverse(actualMovies);
+        System.out.println(actualMovies);
     }
 }
