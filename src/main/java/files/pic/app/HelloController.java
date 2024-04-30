@@ -24,12 +24,12 @@ public class HelloController {
 
         Main main = new Main();
         main.getClient().search(searchBox.getText());
-        main.getClient().getSearch().drawResult("popularity");
+        main.getClient().getSearch().drawResult("release_date");
         System.out.println(searchBox.getText()); // Permet de voir ce que l'utilisateur a entré
         System.out.println(main.getClient().getSearch().getActualMovies().get(0).getPoster()); // Permet de voir l'url de l'image
 
         listView.getItems().clear();
-
+        
         for (int i = 0; i < main.getClient().getSearch().getActualMovies().size(); i++) {
             listView.getItems().add(main.getClient().getSearch().getActualMovies().get(i).getTitle());
         }

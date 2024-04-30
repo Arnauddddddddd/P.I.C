@@ -4,7 +4,7 @@ Le programme est composée des différentes classes suivantes : Main, Client, Se
 
 
 
-Main : la classe où code source commence l'exécution, ici, 
+Main : la classe où le code source commence l'exécution, ici, 
 	on crééra un object de la classe Client
 	
 	
@@ -35,7 +35,7 @@ donc pour une recherche
 
 Main -->  Client -->  Search  -->  API
 
-mais comme dit plus haut --> on peut direct passé de Client à API (searchMovie(String movie))
+mais comme dit plus haut --> on peut directement passer de Client à API (searchMovie(String movie))
 
 
 
