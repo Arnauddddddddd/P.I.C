@@ -24,7 +24,8 @@ public class HelloController {
 
         Main main = new Main();
         main.getClient().search(searchBox.getText());
-        main.getClient().getSearch().drawResult("release_date");
+        main.getClient().getSearch().sortMovies("year");
+        main.getClient().getSearch().drawResult("year");
         System.out.println(searchBox.getText()); // Permet de voir ce que l'utilisateur a entré
         System.out.println(main.getClient().getSearch().getActualMovies().get(0).getPoster()); // Permet de voir l'url de l'image
 
