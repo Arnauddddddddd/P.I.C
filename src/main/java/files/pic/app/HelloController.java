@@ -24,7 +24,8 @@ public class HelloController {
 
         Main main = new Main();
         //main.getClient().search(searchBox.getText());
-        main.getClient().poplarMovies();
+        //main.getClient().popularMovies();
+        main.getClient().bestMovies();
         //main.getClient().getSearch().sortMovies("year");
         main.getClient().getSearch().drawResult("popularity");
         System.out.println(searchBox.getText()); // Permet de voir ce que l'utilisateur a entré
