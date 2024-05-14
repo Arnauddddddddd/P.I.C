@@ -10,12 +10,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class HelloController {
     public TextField searchBox;
     public Label helloLabel;
-    public ListView<String> listView;
+    public VBox listView;
     @FXML
     private Label welcomeText;
 
@@ -31,10 +32,10 @@ public class HelloController {
         System.out.println(searchBox.getText()); // Permet de voir ce que l'utilisateur a entré
         System.out.println(main.getClient().getSearch().getActualMovies().get(0).getPoster()); // Permet de voir l'url de l'image
 
-        listView.getItems().clear();
-        
+        listView.getInsets();
+
         for (int i = 0; i < main.getClient().getSearch().getActualMovies().size(); i++) {
-            listView.getItems().add(main.getClient().getSearch().getActualMovies().get(i).getTitle());
+            listView.getChildren().add(new HBox(new Label(main.getClient().getSearch().getActualMovies().get(i).getTitle())));
         }
     }
 }

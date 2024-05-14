@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="files.pic.app.HelloController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="1000.0">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Pictures/logologo.png" />
+               </image>
+            </ImageView>
+            <Separator orientation="VERTICAL" prefHeight="200.0">
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </Separator>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="500.0">
+               <children>
+                  <TextField fx:id="searchBox" prefHeight="27.0" prefWidth="400.0" />
+                  <Button mnemonicParsing="false" onAction="#onHelloButtonClick" text="Search" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <VBox fx:id="listView" layoutX="112.0" layoutY="243.0" prefHeight="1000.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
+   </VBox>
+   </children>
+</AnchorPane>
