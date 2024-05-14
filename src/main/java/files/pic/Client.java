@@ -22,6 +22,10 @@ public class Client {
         getSearch().setActualMovies(getSearch().getApi().search(movie));
     }
 
+    public void poplarMovies() {
+        getSearch().setActualMovies(getSearch().getApi().getPopularMovies());
+    }
+
     public Search getSearch() {
         return search;
     }
