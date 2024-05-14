@@ -24,9 +24,9 @@ public class HelloController {
     protected void onHelloButtonClick() {
 
         Main main = new Main();
-        //main.getClient().search(searchBox.getText());
+        main.getClient().search(searchBox.getText());
         //main.getClient().popularMovies();
-        main.getClient().bestMovies();
+        //main.getClient().bestMovies();
         //main.getClient().getSearch().sortMovies("year");
         main.getClient().getSearch().drawResult("popularity");
         System.out.println(searchBox.getText()); // Permet de voir ce que l'utilisateur a entré
@@ -34,8 +34,13 @@ public class HelloController {
 
         listView.getInsets();
 
-        for (int i = 0; i < main.getClient().getSearch().getActualMovies().size(); i++) {
+        for (int i = 0; i < 5; i++) {
             listView.getChildren().add(new HBox(new Label(main.getClient().getSearch().getActualMovies().get(i).getTitle())));
+            Image seats_image = new Image(main.getClient().getSearch().getActualMovies().get(i).getPoster());
+            ImageView image = new ImageView(seats_image);
+            image.setFitHeight(150);
+            image.setFitWidth(100);
+            listView.getChildren().add(new HBox(image));
         }
     }
 }

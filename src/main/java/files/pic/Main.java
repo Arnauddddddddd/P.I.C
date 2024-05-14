@@ -28,6 +28,7 @@ public class Main extends Application {
         stage.setTitle("Private Int Cow");
         stage.setScene(scene);
         stage.show();
+
     }
 
     public Client getClient() {
