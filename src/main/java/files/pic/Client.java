@@ -30,6 +30,11 @@ public class Client {
         getSearch().setActualMovies(getSearch().getApi().getBestMovies());
     }
 
+    public void upcomingMovies() {
+        getSearch().setActualMovies(getSearch().getApi().getUpcomingMovies());
+    }
+
+
     public Search getSearch() {
         return search;
     }
