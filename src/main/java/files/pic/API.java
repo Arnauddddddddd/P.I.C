@@ -13,37 +13,46 @@ public class API {
 
     public JSONArray search(String str) {
         for (var i = 1; i < 4; i++) {
-            useApi(i, "", str);
+            useApi(i, "", str, null);
+        }
+        return jsonArray;
+    }
+
+    public JSONArray searchSimularMovies(Integer idMovie) {
+        for (var i = 1; i < 4; i++) {
+            useApi(1, "","", idMovie);
         }
         return jsonArray;
     }
 
     public JSONArray getPopularMovies() {
         for (var i = 1; i < 50; i++) {
-            useApi(i, "popular", "");
+            useApi(i, "popular", "", null);
         }
         return jsonArray;
     }
 
     public JSONArray getBestMovies() {
         for (var i = 1; i < 50; i++) {
-            useApi(i, "top_rated", "");
+            useApi(i, "top_rated", "", null);
         }
         return jsonArray;
     }
 
     public JSONArray getUpcomingMovies() {
         for (var i = 1; i < 50; i++) {
-            useApi(i, "upcoming", "");
+            useApi(i, "upcoming", "", null);
         }
         return jsonArray;
     }
 
 
-    public void useApi(int page, String sort, String search) {
+    public void useApi(int page, String sort, String search, Integer idMovie) {
         String urlPage = "";
-        if (!Objects.equals(search, "")) {
+        if (!Objects.equals(search, "") && Objects.equals(sort, "")) {
             urlPage += "https://api.themoviedb.org/3/search/movie?query=" + search + "&include_adult=true&language=en-US&page=" + page;
+        } else if (idMovie != null) {
+            urlPage += "https://api.themoviedb.org/3/movie/" + idMovie + "/similar?language=en-US&page=" + page;
         } else{
             urlPage += "https://api.themoviedb.org/3/movie/" + sort + "?language=en-US&page=" + page;
         }

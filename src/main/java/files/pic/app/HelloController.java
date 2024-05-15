@@ -36,10 +36,12 @@ public class HelloController {
         //main.getClient().upcomingMovies();
 
         main.getClient().getSearch().sortMovies("popularity");
-        //main.getClient().getSearch().reverseMovies();
+        main.getClient().getSearch().reverseMovies();
         main.getClient().getSearch().drawResult("backdrop_path");
         System.out.println(searchBox.getText()); // Permet de voir ce que l'utilisateur a entré
         System.out.println(main.getClient().getSearch().getActualMovies().get(0).getPoster()); // Permet de voir l'url de l'image
+
+        main.getClient().getSearch().getActualMovies().get(0).setSimularMovies();
 
 
         for (int i = 0; i < 5; i++) {
