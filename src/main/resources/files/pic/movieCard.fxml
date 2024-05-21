@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox id="box" fx:id="box" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="466.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="files.pic.app.MovieCard">
+   <children>
+      <ImageView fx:id="moviePoster" fitHeight="250.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="poster" />
+         </image>
+      </ImageView>
+      <VBox alignment="CENTER" prefHeight="300.0" prefWidth="268.0">
+         <children>
+            <Label fx:id="movieTitle" alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="65.0" prefWidth="167.0" text="Titre" textAlignment="CENTER" textFill="#3d0cb9">
+               <font>
+                  <Font name="Agency FB" size="32.0" />
+               </font>
+            </Label>
+            <Label fx:id="moviePopularity" prefHeight="44.0" prefWidth="225.0" text="Popularity" textFill="#dba112" />
+            <Label fx:id="movieResume" prefHeight="179.0" prefWidth="225.0" text="Resume" />
+         </children>
+      </VBox>
+   </children>
+</HBox>
