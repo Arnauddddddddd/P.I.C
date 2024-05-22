@@ -26,21 +26,21 @@ public class API {
     }
 
     public JSONArray getPopularMovies() {
-        for (var i = 1; i < 20; i++) {
+        for (var i = 1; i < 2; i++) {
             useApi(i, "popular", "", null);
         }
         return jsonArray;
     }
 
     public JSONArray getBestMovies() {
-        for (var i = 1; i < 20; i++) {
+        for (var i = 1; i < 2; i++) {
             useApi(i, "top_rated", "", null);
         }
         return jsonArray;
     }
 
     public JSONArray getUpcomingMovies() {
-        for (var i = 1; i < 20; i++) {
+        for (var i = 1; i < 2; i++) {
             useApi(i, "upcoming", "", null);
         }
         return jsonArray;
@@ -66,7 +66,7 @@ public class API {
 
         try {
             Response response = client.newCall(request).execute();
-            System.out.println(response.code());
+            //System.out.println(response.code());
             String result = response.body().string();
             JSONObject json = new JSONObject(result);
             JSONArray jsonArray2 = (JSONArray) json.get("results");

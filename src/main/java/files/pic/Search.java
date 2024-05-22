@@ -20,11 +20,12 @@ public class Search {
         return api;
     }
 
+
     public void setActualMovies(JSONArray jsonList) {
+        actualMovies = new ArrayList<Movie>();
         for (int i = 0; i < jsonList.length(); i++){
             actualMovies.add(new Movie(jsonList.getJSONObject(i)));
         }
-        System.out.println(actualMovies);
     }
 
     public ArrayList<Movie> getActualMovies() {

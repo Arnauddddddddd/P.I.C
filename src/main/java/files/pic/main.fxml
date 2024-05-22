@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -28,14 +29,42 @@
       </HBox>
    </top>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox fillWidth="false" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane prefHeight="509.0" prefWidth="1000.0">
+            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="437.0" prefWidth="763.0">
                <content>
-                  <HBox fx:id="movieCardLayout" prefHeight="764.0" prefWidth="972.0" />
+                  <HBox fx:id="movieCardLayout" prefHeight="729.0" prefWidth="769.0" />
                </content>
             </ScrollPane>
          </children>
       </VBox>
    </center>
+   <left>
+      <HBox prefHeight="548.0" prefWidth="178.0" BorderPane.alignment="CENTER">
+         <effect>
+            <ColorAdjust brightness="0.68" contrast="0.59" hue="0.42" saturation="0.54" />
+         </effect>
+         <children>
+            <VBox prefHeight="408.0" prefWidth="178.0">
+               <children>
+                  <VBox prefHeight="119.0" prefWidth="178.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Soon" onAction="#soonMoviesButtonClick" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Popular" onAction="#popularMoviesButtonClick" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Best" onAction="#bestMoviesButtonClick" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </left>
 </BorderPane>

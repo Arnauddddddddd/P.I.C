@@ -8,15 +8,9 @@ import files.pic.movie.MovieSeen;
 
 
 public class Client {
-    private Search search;
-    private ArrayList<MovieSeen> moviesSeen;
-    private ArrayList<Movie> moviesToWatch;
-
-    public Client() {
-        search = new Search();
-        moviesSeen = new ArrayList<>();
-        moviesToWatch = new ArrayList<>();
-    }
+    private final Search search = new Search();
+    private ArrayList<MovieSeen> moviesSeen = new ArrayList<>();
+    private ArrayList<Movie> moviesToWatch = new ArrayList<>();
 
     public void searchMovie(String movie) {
         getSearch().setActualMovies(getSearch().getApi().search(movie));
@@ -34,6 +28,10 @@ public class Client {
         getSearch().setActualMovies(getSearch().getApi().getUpcomingMovies());
     }
 
+    public ArrayList<Movie> getSearchedMovies() {
+        return getSearch().getActualMovies();
+    }
+
 
     public Search getSearch() {
         return search;
@@ -45,10 +43,6 @@ public class Client {
 
     public ArrayList<Movie> getMoviesToWatch() {
         return moviesToWatch;
-    }
-
-    public void setSearch(Search search) {
-        this.search = search;
     }
 
     public void setMoviesSeen(ArrayList<MovieSeen> moviesSeen) {
