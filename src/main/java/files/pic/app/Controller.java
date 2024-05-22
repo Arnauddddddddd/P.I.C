@@ -23,7 +23,7 @@ public class Controller implements Initializable {
     @FXML
     public TextField searchBox;
     public Client client = new Client();
-    public HBox movieCardLayout;
+    public VBox movieCardLayout;
 
 
 
