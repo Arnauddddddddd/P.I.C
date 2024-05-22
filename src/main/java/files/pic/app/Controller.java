@@ -29,49 +29,47 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        client.upcomingMovies();
-        updateMovies();
-        movieCardLayout.getChildren().clear();
+        //client.upcomingMovies();
+        //updateMovies();
+        //movieCardLayout.getChildren().clear();
+        System.out.println("Initializing Controller");
 
     }
+
 
     @FXML
     protected void onSearchButtonClick() {
         client.search(searchBox.getText());
         client.getSearch().sortMovies("popularity");
         client.getSearch().reverseMovies();
-        movieCardLayout.getChildren().clear();
-        updateMovies();
+        updateMovies(0);
     }
 
     @FXML
     protected void soonMoviesButtonClick() {
         client.upcomingMovies();
-        movieCardLayout.getChildren().clear();
-        updateMovies();
+        updateMovies(0);
 
     }
 
     @FXML
     protected void popularMoviesButtonClick() {
         client.popularMovies();
-        movieCardLayout.getChildren().clear();
-        updateMovies();
+        updateMovies(0);
 
     }
 
 
     @FXML
     protected void bestMoviesButtonClick() {
-        movieCardLayout.getChildren().clear();
         client.bestMovies();
-        updateMovies();
+        updateMovies(0);
     }
 
-    public void updateMovies() {
-        client.getSearch().drawResult("popularity");
+    public void updateMovies(Integer page) {
+        movieCardLayout.getChildren().clear();
         try {
-            for (int i = 0; i < client.getSearchedMovies().size(); i++) {
+            for (int i = page + page * 15; i < Math.min(client.getSearchedMovies().size(), page + page * 15 + 15); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 URL url2 = new File("src/main/java/files/pic/movieCard.fxml").toURI().toURL();
                 fxmlLoader.setLocation(url2);

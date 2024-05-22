@@ -12,13 +12,15 @@ public class API {
     OkHttpClient client = new OkHttpClient();
 
     public JSONArray search(String str) {
-        for (var i = 1; i < 2; i++) {
+        jsonArray = new JSONArray();
+        for (var i = 1; i < 4; i++) {
             useApi(i, "", str, null);
         }
         return jsonArray;
     }
 
     public JSONArray searchSimularMovies(Integer idMovie) {
+        jsonArray = new JSONArray();
         for (var i = 1; i < 2; i++) {
             useApi(1, "","", idMovie);
         }
@@ -26,21 +28,24 @@ public class API {
     }
 
     public JSONArray getPopularMovies() {
-        for (var i = 1; i < 2; i++) {
+        jsonArray = new JSONArray();
+        for (var i = 1; i < 8; i++) {
             useApi(i, "popular", "", null);
         }
         return jsonArray;
     }
 
     public JSONArray getBestMovies() {
-        for (var i = 1; i < 2; i++) {
+        jsonArray = new JSONArray();
+        for (var i = 1; i < 8; i++) {
             useApi(i, "top_rated", "", null);
         }
         return jsonArray;
     }
 
     public JSONArray getUpcomingMovies() {
-        for (var i = 1; i < 2; i++) {
+        jsonArray = new JSONArray();
+        for (var i = 1; i < 8; i++) {
             useApi(i, "upcoming", "", null);
         }
         return jsonArray;

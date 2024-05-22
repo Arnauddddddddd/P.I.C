@@ -54,7 +54,6 @@ public class Search {
                 }
             }
         }
-        System.out.println(actualMovies);
     }
 
     public void reverseMovies() {
