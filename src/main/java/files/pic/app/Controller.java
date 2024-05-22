@@ -29,25 +29,21 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //client.upcomingMovies();
-        //updateMovies();
-        //movieCardLayout.getChildren().clear();
         System.out.println("Initializing Controller");
-
     }
 
 
     @FXML
     protected void onSearchButtonClick() {
         client.search(searchBox.getText());
-        client.getSearch().sortMovies("popularity");
+        client.getSearch().sortMovies("vote_average");
         client.getSearch().reverseMovies();
         updateMovies(0);
     }
 
     @FXML
     protected void soonMoviesButtonClick() {
-        client.upcomingMovies();
+        client.getSearch().setActualMoviesByMovieArray(client.getMoviesToWatch());
         updateMovies(0);
 
     }
@@ -75,7 +71,7 @@ public class Controller implements Initializable {
                 fxmlLoader.setLocation(url2);
                 HBox carbox = fxmlLoader.load();
                 MovieCard movieCard = fxmlLoader.getController();
-                movieCard.setData(client.getSearchedMovies().get(i));
+                movieCard.setData(client.getSearchedMovies().get(i), client);
                 movieCardLayout.getChildren().add(carbox);
             }
 
@@ -83,4 +79,5 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
     }
+
 }

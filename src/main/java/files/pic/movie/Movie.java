@@ -14,6 +14,7 @@ public class Movie {
     private float voteAverage;
     private String poster;
     private int year;
+    private String resume;
     private ArrayList<Movie> simularMovies;
 
     public Movie(JSONObject jsonObject) {
@@ -22,6 +23,7 @@ public class Movie {
         title = jsonObject.get("title").toString();
         popularity = Float.parseFloat(jsonObject.get("popularity").toString());
         voteAverage = Float.parseFloat(jsonObject.get("vote_average").toString());
+        resume = jsonObject.get("overview").toString();
         poster = "https://image.tmdb.org/t/p/w500" + jsonObject.get("poster_path").toString();
         simularMovies = new ArrayList<>();
 
@@ -68,6 +70,10 @@ public class Movie {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getResume() {
+        return resume;
     }
 
     public int getYear() {

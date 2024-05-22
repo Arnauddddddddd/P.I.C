@@ -2,6 +2,8 @@ package files.pic;
 
 
 import java.util.ArrayList;
+import java.util.Objects;
+
 import files.pic.movie.Movie;
 import files.pic.movie.MovieSeen;
 
@@ -56,6 +58,24 @@ public class Client {
     public void addMovieToWatch(Movie movie) {
         this.moviesToWatch.add(movie);
     }
+
+    public void removeMovieToWatch(Movie movie) {
+        for (int i = 0; i < getMoviesToWatch().size(); i++) {
+            if (Objects.equals(movie.getId(),  getMoviesToWatch().get(i).getId())) {
+                this.moviesToWatch.remove(getMoviesToWatch().get(i));
+            }
+        }
+    }
+
+    public boolean containsMovieToWatch(Movie movie) {
+        for (int i = 0; i < getMoviesToWatch().size(); i++) {
+            if (Objects.equals(movie.getId(),  getMoviesToWatch().get(i).getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public void addMovieSeen(Movie movie) {
         MovieSeen moviesSeen = new MovieSeen(movie);

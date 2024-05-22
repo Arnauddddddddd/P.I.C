@@ -28,6 +28,11 @@ public class Search {
         }
     }
 
+    public void setActualMoviesByMovieArray(ArrayList<Movie> movieList) {
+        actualMovies = movieList;
+
+    }
+
     public ArrayList<Movie> getActualMovies() {
         return actualMovies;
     }
