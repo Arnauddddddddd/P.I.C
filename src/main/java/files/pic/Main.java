@@ -14,7 +14,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        URL url = new File("src/main/java/files/pic/main.fxml").toURI().toURL();
+        URL url = new File("src/main/resources/files/pic/main.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root, 1000, 800);
         stage.setTitle("Private Int Cow");
