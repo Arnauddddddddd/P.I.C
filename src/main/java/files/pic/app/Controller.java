@@ -36,7 +36,11 @@ public class Controller implements Initializable {
     public Client client = new Client();
     public VBox movieCardLayout;
     private static FileWriter file;
-
+    public Label titleMenu;
+    public Label pageNumber;
+    public Hyperlink PreviousPage;
+    public Hyperlink NextPage;
+    private Integer page = 0;
 
 
     @Override
@@ -78,7 +82,8 @@ public class Controller implements Initializable {
     @FXML
     public void seeMoviesButtonClick(ActionEvent actionEvent) {
         client.getSearch().setActualMoviesByMovieArray(client.getMoviesSeenMovie());
-        updateMovies(0);
+        titleMenu.setText("Visioned Movies");
+        updateMovies(page);
     }
 
 
@@ -88,33 +93,37 @@ public class Controller implements Initializable {
         client.search(searchBox.getText());
         client.getSearch().sortMovies("vote_average");
         client.getSearch().reverseMovies();
-        updateMovies(0);
+        titleMenu.setText("Search : " + searchBox.getText());
+        updateMovies(page);
     }
 
     @FXML
     protected void soonMoviesButtonClick() {
         client.getSearch().setActualMoviesByMovieArray(client.getMoviesToWatch());
-        updateMovies(0);
+        titleMenu.setText("Upcoming Movies !");
+        updateMovies(page);
     }
 
 
     @FXML
     protected void popularMoviesButtonClick() {
         client.popularMovies();
-        updateMovies(0);
+        titleMenu.setText("Most popular Movies in the moment !");
+        updateMovies(page);
     }
 
 
     @FXML
     protected void bestMoviesButtonClick() {
+        titleMenu.setText("Best appreciated Movies in the moment !");
         client.bestMovies();
-        updateMovies(0);
+        updateMovies(page);
     }
 
     public void updateMovies(Integer page) {
         movieCardLayout.getChildren().clear();
         try {
-            for (int i = page + page * 15; i < Math.min(client.getSearchedMovies().size(), page + page * 15 + 15); i++) {
+            for (int i = page * 15; i < Math.min(client.getSearchedMovies().size(), page * 15 + 15); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 URL url2 = new File("src/main/resources/files/pic/movieCard.fxml").toURI().toURL();
                 fxmlLoader.setLocation(url2);
@@ -149,26 +158,39 @@ public class Controller implements Initializable {
     public void sortPopularMovies(ActionEvent actionEvent) {
         client.getSearch().sortMovies("popularity");
         client.getSearch().reverseMovies();
-        updateMovies(0);
+        updateMovies(page);
 
     }
 
     public void sortBestRatedMovies(ActionEvent actionEvent) {
         client.getSearch().sortMovies("vote_average");
         client.getSearch().reverseMovies();
-        updateMovies(0);
+        updateMovies(page);
     }
 
     public void sortMoreRecentMovies(ActionEvent actionEvent) {
         client.getSearch().sortMovies("year");
         client.getSearch().reverseMovies();
-        updateMovies(0);
+        updateMovies(page);
     }
 
     public void sortLessMovies(ActionEvent actionEvent) {
         client.getSearch().sortMovies("year");
-        updateMovies(0);
+        updateMovies(page);
     }
 
 
+    public void previousPage() {
+        if (page > 0) {
+            page--;
+            updateMovies(page);
+        }
+    }
+
+    public void nextPage(ActionEvent actionEvent) {
+        if (page * 15 < client.getSearchedMovies().size()) {
+            page++;
+            updateMovies(page);
+        }
+    }
 }

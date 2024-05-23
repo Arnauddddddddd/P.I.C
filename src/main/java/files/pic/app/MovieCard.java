@@ -14,10 +14,10 @@ public class MovieCard {
     public ImageView moviePoster;
     public Label movieTitle;
     public Label movieResume;
-    public Label moviePopularity;
     public HBox box;
     public Button addWatchList;
     public Button addListMoviesViewed;
+    public Label movieRate;
     private Movie movie;
     private Client client;
 
@@ -27,9 +27,9 @@ public class MovieCard {
         this.movie = movie;
         this.client = client;
         moviePoster.setImage(image);
-        moviePopularity.setText(String.valueOf(movie.getVoteAverage()));
+        movieRate.setText(String.valueOf(movie.getVoteAverage()) + " / 10");
         movieTitle.setText(movie.getTitle());
-        movieResume.setText(movie.getId().toString());
+        movieResume.setText(movie.getResume());
         if (client.containsMovieToWatch(movie)) {
             this.addWatchList.setText("Remove to watch list");
         }
