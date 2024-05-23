@@ -1,4 +1,13 @@
-.button {
+.buttonWhite {
+    -fx-background-color: white;
+    -fx-text-fill: #2778f3;
+    -fx-font-size: 12;
+    -fx-pref-width: 75;
+    -fx-pref-height: 25;
+    -fx-background-radius: 40;
+}
+
+.buttonBlue {
     -fx-background-color: #2778f3;
     -fx-text-fill: white;
     -fx-font-size: 12;
@@ -15,7 +24,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: rgba(39, 120, 243, 0.25);
+    -fx-background-color: #2778f3;
     -fx-text-fill: white;
     -fx-font-size: 12;
 }
@@ -31,4 +40,13 @@
     -fx-end-margin: 10;
     -fx-top-margin: 10;
     -fx-bottom-margin: 10;
+}
+
+.title {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+.hyperlink {
+    -fx-text-fill: #2778f3;
 }

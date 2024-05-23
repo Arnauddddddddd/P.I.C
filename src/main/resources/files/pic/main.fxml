@@ -38,7 +38,7 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
                <children>
                   <TextField fx:id="searchBox" prefHeight="25.0" prefWidth="300.0" styleClass="search" stylesheets="@styles.css" />
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onSearchButtonClick" stylesheets="@styles.css" text="search" textAlignment="CENTER" HBox.hgrow="NEVER">
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onSearchButtonClick" styleClass="buttonBlue" stylesheets="@styles.css" text="search" textAlignment="CENTER" HBox.hgrow="NEVER">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -57,39 +57,77 @@
    <center>
       <VBox fillWidth="false" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
+            <HBox alignment="BASELINE_RIGHT" prefHeight="50.0" prefWidth="900.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="450.0">
+                     <children>
+                        <Label text="Titre qui se change" />
+                     </children>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="450.0">
+                     <children>
+                        <MenuButton mnemonicParsing="false" text="Sort">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#sortPopularMovies" text="Popular" />
+                            <MenuItem mnemonicParsing="false" onAction="#sortBestRatedMovies" text="Best rated" />
+                              <MenuItem mnemonicParsing="false" onAction="#sortMoreRecentMovies" text="More recent" />
+                              <MenuItem mnemonicParsing="false" onAction="#sortLessMovies" text="Less recent" />
+                          </items>
+                        </MenuButton>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="80.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+            </HBox>
             <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefWidth="900.0">
                <content>
                   <VBox fx:id="movieCardLayout" prefHeight="200.0" prefWidth="100.0" />
                </content>
             </ScrollPane>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="900.0">
+               <children>
+                  <Hyperlink stylesheets="@styles.css" text="Previous">
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </Hyperlink>
+                  <Hyperlink layoutX="427.0" layoutY="16.0" stylesheets="@styles.css" text="Next">
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </Hyperlink>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </center>
    <left>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menu-bar" stylesheets="@styles.css" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#popularMoviesButtonClick" text="Popular">
+            <Button mnemonicParsing="false" onAction="#popularMoviesButtonClick" styleClass="buttonWhite" stylesheets="@styles.css" text="Popular">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-               <stylesheets>
-                  <URL value="@styles.css" />
-                  <URL value="@styles.css" />
-               </stylesheets>
                <VBox.margin>
                   <Insets bottom="50.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#bestMoviesButtonClick" stylesheets="@styles.css" text="Best">
+            <Button mnemonicParsing="false" onAction="#bestMoviesButtonClick" styleClass="buttonWhite" stylesheets="@styles.css" text="Best">
                <VBox.margin>
                   <Insets bottom="50.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#soonMoviesButtonClick" stylesheets="@styles.css" text="Soon">
+            <Button mnemonicParsing="false" onAction="#soonMoviesButtonClick" styleClass="buttonWhite" stylesheets="@styles.css" text="WatchList">
                <VBox.margin>
                   <Insets bottom="50.0" />
                </VBox.margin>
             </Button>
+            <Button layoutX="23.0" layoutY="300.0" mnemonicParsing="false" onAction="#seeMoviesButtonClick" styleClass="buttonWhite" stylesheets="@styles.css" text="See" />
          </children>
       </VBox>
    </left>
