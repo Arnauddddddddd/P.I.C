@@ -52,6 +52,15 @@ public class Client {
         return moviesSeen;
     }
 
+    public ArrayList<Movie> getMoviesSeenMovie() {
+        ArrayList<Movie> movies = new ArrayList<>();
+        for (int i = 0; i < getMoviesSeen().size(); i++) {
+            movies.add(getMoviesSeen().get(i).getMovie());
+        }
+        return movies;
+    }
+
+
     public ArrayList<Movie> getMoviesToWatch() {
         return moviesToWatch;
     }

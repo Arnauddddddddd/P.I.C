@@ -6,6 +6,7 @@ import files.pic.Client;
 
 import files.pic.movie.Movie;
 import files.pic.movie.MovieSeen;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -74,6 +75,12 @@ public class Controller implements Initializable {
 
     }
 
+    @FXML
+    public void seeMoviesButtonClick(ActionEvent actionEvent) {
+        client.getSearch().setActualMoviesByMovieArray(client.getMoviesSeenMovie());
+        updateMovies(0);
+    }
+
 
 
     @FXML
@@ -88,15 +95,14 @@ public class Controller implements Initializable {
     protected void soonMoviesButtonClick() {
         client.getSearch().setActualMoviesByMovieArray(client.getMoviesToWatch());
         updateMovies(0);
-
     }
+
 
     @FXML
     protected void popularMoviesButtonClick() {
         client.popularMovies();
         updateMovies(0);
     }
-
 
 
     @FXML
@@ -139,4 +145,30 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public void sortPopularMovies(ActionEvent actionEvent) {
+        client.getSearch().sortMovies("popularity");
+        client.getSearch().reverseMovies();
+        updateMovies(0);
+
+    }
+
+    public void sortBestRatedMovies(ActionEvent actionEvent) {
+        client.getSearch().sortMovies("vote_average");
+        client.getSearch().reverseMovies();
+        updateMovies(0);
+    }
+
+    public void sortMoreRecentMovies(ActionEvent actionEvent) {
+        client.getSearch().sortMovies("year");
+        client.getSearch().reverseMovies();
+        updateMovies(0);
+    }
+
+    public void sortLessMovies(ActionEvent actionEvent) {
+        client.getSearch().sortMovies("year");
+        updateMovies(0);
+    }
+
+
 }

@@ -2,6 +2,7 @@ package files.pic.app;
 
 import files.pic.Client;
 import files.pic.movie.Movie;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -16,6 +17,7 @@ public class MovieCard {
     public Label moviePopularity;
     public HBox box;
     public Button addWatchList;
+    public Button addListMoviesViewed;
     private Movie movie;
     private Client client;
 
@@ -30,9 +32,11 @@ public class MovieCard {
         movieResume.setText(movie.getId().toString());
         if (client.containsMovieToWatch(movie)) {
             this.addWatchList.setText("Remove to watch list");
-        } else {
-            this.addWatchList.setText("Add to watch list");
         }
+        if (client.containsMovieSeen(movie)) {
+            this.addListMoviesViewed.setText("Remove to watch list");
+        }
+
     }
 
     @FXML
@@ -46,15 +50,14 @@ public class MovieCard {
         }
     }
 
-
     @FXML
-    protected void listMovieSeen() {
-        if (!client.containsMovieToWatch(movie)) {
-            client.addMovieToWatch(movie);
-            this.addWatchList.setText("Remove to watch list");
+    protected void listMoviesViewed() {
+        if (!client.containsMovieSeen(movie)) {
+            client.addMovieSeen(movie);
+            this.addListMoviesViewed.setText("Remove to watch list");
         } else {
-            client.removeMovieToWatch(movie);
-            this.addWatchList.setText("Add to watch list");
+            client.removeMovieSeen(movie);
+            this.addListMoviesViewed.setText("Add to watch list");
         }
     }
 }
