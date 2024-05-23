@@ -7,6 +7,8 @@ module files.pic {
     requires org.kordamp.bootstrapfx.core;
     requires okhttp3;
     requires org.json;
+    requires gson;
+    requires json.simple;
 
 
     opens files.pic to javafx.fxml;

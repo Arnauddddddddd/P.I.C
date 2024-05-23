@@ -27,7 +27,7 @@ public class MovieCard {
         moviePoster.setImage(image);
         moviePopularity.setText(String.valueOf(movie.getVoteAverage()));
         movieTitle.setText(movie.getTitle());
-        movieResume.setText(movie.getResume());
+        movieResume.setText(movie.getId().toString());
         if (client.containsMovieToWatch(movie)) {
             this.addWatchList.setText("Remove to watch list");
         } else {
@@ -44,6 +44,17 @@ public class MovieCard {
             client.removeMovieToWatch(movie);
             this.addWatchList.setText("Add to watch list");
         }
-        System.out.println(client.getMoviesToWatch());
+    }
+
+
+    @FXML
+    protected void listMovieSeen() {
+        if (!client.containsMovieToWatch(movie)) {
+            client.addMovieToWatch(movie);
+            this.addWatchList.setText("Remove to watch list");
+        } else {
+            client.removeMovieToWatch(movie);
+            this.addWatchList.setText("Add to watch list");
+        }
     }
 }

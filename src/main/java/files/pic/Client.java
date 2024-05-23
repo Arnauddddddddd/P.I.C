@@ -6,13 +6,22 @@ import java.util.Objects;
 
 import files.pic.movie.Movie;
 import files.pic.movie.MovieSeen;
-
+import org.json.JSONObject;
 
 
 public class Client {
     private final Search search = new Search();
     private ArrayList<MovieSeen> moviesSeen = new ArrayList<>();
     private ArrayList<Movie> moviesToWatch = new ArrayList<>();
+
+    private ArrayList<JSONObject> moviesSeenJSon = new ArrayList<JSONObject>();
+    private ArrayList<JSONObject> moviesToWatchJSon = new ArrayList<JSONObject>();
+
+
+//    private ArrayList<Integer> moviesSeenId = new ArrayList<Integer>();
+//    private ArrayList<Integer> moviesToWatchId = new ArrayList<Integer>();
+
+
 
     public void searchMovie(String movie) {
         getSearch().setActualMovies(getSearch().getApi().search(movie));
@@ -76,10 +85,48 @@ public class Client {
         return false;
     }
 
-
     public void addMovieSeen(Movie movie) {
         MovieSeen moviesSeen = new MovieSeen(movie);
         this.moviesSeen.add(moviesSeen);
+    }
+
+    public void removeMovieSeen(Movie movie) {
+        for (int i = 0; i < getMoviesSeen().size(); i++) {
+            if (Objects.equals(movie.getId(), getMoviesSeen().get(i).getId())) {
+                this.moviesToWatch.remove(getMoviesSeen().get(i));
+            }
+        }
+    }
+
+    public boolean containsMovieSeen(Movie movie) {
+        for (int i = 0; i < getMoviesSeen().size(); i++) {
+            if (Objects.equals(movie.getId(),  getMoviesSeen().get(i).getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ArrayList<JSONObject> getMovieSeenId() {
+        return moviesSeenJSon;
+    }
+
+    public ArrayList<JSONObject> getMovieToWatchId() {
+        return moviesToWatchJSon;
+    }
+
+    public void saveMovieToWatchId() {
+        moviesToWatchJSon = new ArrayList<JSONObject>();
+        for (int i = 0; i < getMoviesToWatch().size(); i++) {
+            moviesToWatchJSon.add(getMoviesToWatch().get(i).getJsonObject());
+        }
+    }
+
+    public void saveMovieSeenId() {
+        moviesSeenJSon = new ArrayList<JSONObject>();
+        for (int i = 0; i < getMoviesSeen().size(); i++) {
+            moviesSeenJSon.add(getMoviesSeen().get(i).getJsonObject());
+        }
     }
 
     public void search(String text) {
