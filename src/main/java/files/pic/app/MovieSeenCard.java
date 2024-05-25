@@ -20,6 +20,7 @@ public class MovieSeenCard extends MovieCard {
 
     public void setData(MovieSeen movieSeen, Client client) {
         super.setData(movieSeen, client);
+        addListMoviesViewed.setText(strRemoveMovieViewed);
         clientNote.setText(movieSeen.getNote().toString());
         clientCommentary.setText(movieSeen.getCommentary());
     }
@@ -28,9 +29,7 @@ public class MovieSeenCard extends MovieCard {
     protected void removeMoviesViewed() {
         if (client.containsMovieSeen(movie)) {
             client.removeMovieSeen(movie);
-            System.out.println(movie.getTitle());
-            this.addListMoviesViewed.setText("Add to watch list");
-            System.out.println(client.getMoviesSeen());
+            this.addListMoviesViewed.setText(strAddMovieToWatch);
         }
     }
 }

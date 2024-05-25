@@ -7,14 +7,14 @@ import java.util.ArrayList;
 
 public class Movie {
 
-    private JSONObject jsonObject;
-    private Integer id;
-    private String title;
-    private float popularity;
-    private float voteAverage;
-    private String poster;
-    private int year;
-    private String resume;
+    private final JSONObject jsonObject;
+    private final Integer id;
+    private final String title;
+    private final float popularity;
+    private final float voteAverage;
+    private final String poster;
+    private final int year;
+    private final String resume;
     private ArrayList<Movie> simularMovies;
 
     public Movie(JSONObject jsonObject) {
@@ -49,7 +49,6 @@ public class Movie {
         Search search = new Search();
         search.setActualMovies(new Search().getApi().searchSimularMovies(this.getId()));
         simularMovies = search.getActualMovies();
-        search.drawResult("popularity");
     }
 
     public float getPopularity() {

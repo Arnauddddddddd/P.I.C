@@ -28,15 +28,15 @@ public class Client {
     }
 
     public void popularMovies() {
-        getSearch().setActualMovies(getSearch().getApi().getPopularMovies());
+        getSearch().getPopularMovies();
     }
 
     public void bestMovies() {
-        getSearch().setActualMovies(getSearch().getApi().getBestMovies());
+        getSearch().getBestMovies();
     }
 
     public void upcomingMovies() {
-        getSearch().setActualMovies(getSearch().getApi().getUpcomingMovies());
+        getSearch().getUpComingMovies();
     }
 
     public ArrayList<Movie> getSearchedMovies() {

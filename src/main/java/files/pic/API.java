@@ -29,7 +29,7 @@ public class API {
 
     public JSONArray getPopularMovies() {
         jsonArray = new JSONArray();
-        for (var i = 1; i < 4; i++) {
+        for (var i = 1; i < 20; i++) {
             useApi(i, "popular", "", null);
         }
         return jsonArray;
@@ -37,7 +37,7 @@ public class API {
 
     public JSONArray getBestMovies() {
         jsonArray = new JSONArray();
-        for (var i = 1; i < 4; i++) {
+        for (var i = 1; i < 20; i++) {
             useApi(i, "top_rated", "", null);
         }
         return jsonArray;
@@ -45,7 +45,7 @@ public class API {
 
     public JSONArray getUpcomingMovies() {
         jsonArray = new JSONArray();
-        for (var i = 1; i < 4; i++) {
+        for (var i = 1; i < 3; i++) {
             useApi(i, "upcoming", "", null);
         }
         return jsonArray;

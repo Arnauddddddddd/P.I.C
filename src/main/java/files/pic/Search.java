@@ -9,11 +9,27 @@ import java.util.Collections;
 
 public class Search {
     private ArrayList<Movie> actualMovies;
+
+    private ArrayList<Movie> popularMovies;
+    private ArrayList<Movie> bestMovies;
+    private ArrayList<Movie> upcomingMovies;
+
     private API api;
 
     public Search() {
         this.actualMovies = new ArrayList<Movie>();
         this.api = new API();
+        this.popularMovies = new ArrayList<>();
+        this.bestMovies = new ArrayList<>();
+        this.upcomingMovies = new ArrayList<>();
+        setBestMovies();
+        setPopularMovies();
+        setUpcomingMovies();
+
+    }
+
+    public ArrayList<Movie> getActualMovies() {
+        return actualMovies;
     }
 
     public API getApi() {
@@ -28,24 +44,49 @@ public class Search {
         }
     }
 
+    public void setPopularMovies() {
+        JSONArray jsonList = getApi().getPopularMovies();
+        for (int i = 0; i < jsonList.length(); i++){
+            popularMovies.add(new Movie(jsonList.getJSONObject(i)));
+        }
+    }
+
+    public void setBestMovies() {
+        JSONArray jsonList = getApi().getBestMovies();
+        for (int i = 0; i < jsonList.length(); i++){
+            bestMovies.add(new Movie(jsonList.getJSONObject(i)));
+        }
+    }
+
+    public void setUpcomingMovies() {
+        JSONArray jsonList = getApi().getUpcomingMovies();
+        for (int i = 0; i < jsonList.length(); i++){
+            upcomingMovies.add(new Movie(jsonList.getJSONObject(i)));
+        }
+    }
+
+    public void getPopularMovies() {
+        actualMovies = popularMovies;
+    }
+
+    public void getBestMovies() {
+        actualMovies = bestMovies;
+    }
+
+    public void getUpComingMovies() {
+        actualMovies = upcomingMovies;
+    }
+
+
+
+
+
     public void setActualMoviesByMovieArray(ArrayList<Movie> movieList) {
         actualMovies = movieList;
 
     }
 
-    public ArrayList<Movie> getActualMovies() {
-        return actualMovies;
-    }
 
-    public void drawResult(String type) {
-        for (int i = actualMovies.size()-1; i >= 0; i--) {
-            Movie movie = actualMovies.get(i);
-            System.out.print(movie.getTitle());
-            System.out.print("    ");
-            System.out.print(movie.getType(type));
-            System.out.print("\n");
-        }
-    }
 
     public void sortMovies(String type) {
         for (int i = 0; i < actualMovies.size() - 1; i++) {

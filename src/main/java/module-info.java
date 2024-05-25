@@ -9,6 +9,7 @@ module files.pic {
     requires org.json;
     requires gson;
     requires json.simple;
+    requires kotlin.stdlib;
 
 
     opens files.pic to javafx.fxml;

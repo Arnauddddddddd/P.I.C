@@ -4,8 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 import files.pic.Client;
 
+import files.pic.Main;
 import files.pic.movie.Movie;
 import files.pic.movie.MovieSeen;
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +20,8 @@ import java.io.*;
 
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import okhttp3.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -76,6 +81,14 @@ public class Controller implements Initializable {
             }
             client.setMoviesSeen(moviesSeenDb);
         }
+        popularMoviesButtonClick();
+
+    }
+
+    public void shutdown() {
+        System.out.println("Stop");
+        save();
+        Platform.exit();
 
     }
 
@@ -83,6 +96,7 @@ public class Controller implements Initializable {
     public void seeMoviesButtonClick(ActionEvent actionEvent) {
         client.getSearch().setActualMoviesByMovieArray(client.getMoviesSeenMovie());
         titleMenu.setText("Visioned Movies");
+        page = 0;
         updateMovies(page);
     }
 
@@ -94,6 +108,7 @@ public class Controller implements Initializable {
         client.getSearch().sortMovies("vote_average");
         client.getSearch().reverseMovies();
         titleMenu.setText("Search : " + searchBox.getText());
+        page = 0;
         updateMovies(page);
     }
 
@@ -101,27 +116,37 @@ public class Controller implements Initializable {
     protected void soonMoviesButtonClick() {
         client.getSearch().setActualMoviesByMovieArray(client.getMoviesToWatch());
         titleMenu.setText("Upcoming Movies !");
+        page = 0;
         updateMovies(page);
     }
 
+    @FXML
+    protected void upComingButtonClick(ActionEvent actionEvent) {
+        client.upcomingMovies();
+        titleMenu.setText("Soon in Cinema !");
+        page = 0;
+        updateMovies(page);
+    }
 
     @FXML
     protected void popularMoviesButtonClick() {
         client.popularMovies();
-        titleMenu.setText("Most popular Movies in the moment !");
+        titleMenu.setText("Most popular Movies of the moment !");
+        page = 0;
         updateMovies(page);
     }
 
 
     @FXML
     protected void bestMoviesButtonClick() {
-        titleMenu.setText("Best appreciated Movies in the moment !");
+        titleMenu.setText("Best appreciated Movies of the moment !");
         client.bestMovies();
+        page = 0;
         updateMovies(page);
     }
 
     public void updateMovies(Integer page) {
-        movieCardLayout.getChildren().clear();
+        updateHUDPage();
         try {
             for (int i = page * 15; i < Math.min(client.getSearchedMovies().size(), page * 15 + 15); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -147,6 +172,56 @@ public class Controller implements Initializable {
         }
     }
 
+    public void updateHUDPage() {
+        movieCardLayout.getChildren().clear();
+        int currentPage = page + 1;
+        pageNumber.setText(Integer.toString(currentPage) + " / " + Math.max(client.getSearchedMovies().size()/15, 1));
+        NextPage.setDisable(!((page + 1) * 15 < client.getSearchedMovies().size()));
+        PreviousPage.setDisable(!(page > 0));
+
+    }
+
+
+
+    public void sortPopularMovies(ActionEvent actionEvent) {
+        client.getSearch().sortMovies("popularity");
+        client.getSearch().reverseMovies();
+        page = 0;
+        updateMovies(page);
+
+    }
+
+    public void sortBestRatedMovies(ActionEvent actionEvent) {
+        client.getSearch().sortMovies("vote_average");
+        client.getSearch().reverseMovies();
+        page = 0;
+        updateMovies(page);
+    }
+
+    public void sortMoreRecentMovies(ActionEvent actionEvent) {
+        client.getSearch().sortMovies("year");
+        client.getSearch().reverseMovies();
+        page = 0;
+        updateMovies(page);
+    }
+
+    public void sortLessMovies(ActionEvent actionEvent) {
+        client.getSearch().sortMovies("year");
+        page = 0;
+        updateMovies(page);
+    }
+
+
+    public void previousPage() {
+        page--;
+        updateMovies(page);
+    }
+
+    public void nextPage(ActionEvent actionEvent) {
+        page++;
+        updateMovies(page);
+    }
+
     public void save() {
         org.json.simple.JSONObject jsonObject = new org.json.simple.JSONObject();
         client.saveMovieSeenId();
@@ -158,48 +233,10 @@ public class Controller implements Initializable {
             FileWriter file = new FileWriter("src/main/resources/files/pic/data.json");
             file.write(jsonObject.toString());
             file.close();
-            System.out.println(jsonObject.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void sortPopularMovies(ActionEvent actionEvent) {
-        client.getSearch().sortMovies("popularity");
-        client.getSearch().reverseMovies();
-        updateMovies(page);
 
-    }
-
-    public void sortBestRatedMovies(ActionEvent actionEvent) {
-        client.getSearch().sortMovies("vote_average");
-        client.getSearch().reverseMovies();
-        updateMovies(page);
-    }
-
-    public void sortMoreRecentMovies(ActionEvent actionEvent) {
-        client.getSearch().sortMovies("year");
-        client.getSearch().reverseMovies();
-        updateMovies(page);
-    }
-
-    public void sortLessMovies(ActionEvent actionEvent) {
-        client.getSearch().sortMovies("year");
-        updateMovies(page);
-    }
-
-
-    public void previousPage() {
-        if (page > 0) {
-            page--;
-            updateMovies(page);
-        }
-    }
-
-    public void nextPage(ActionEvent actionEvent) {
-        if (page * 15 < client.getSearchedMovies().size()) {
-            page++;
-            updateMovies(page);
-        }
-    }
 }

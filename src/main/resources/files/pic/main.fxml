@@ -7,7 +7,9 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -55,9 +57,9 @@
          <children>
             <HBox alignment="BASELINE_RIGHT" prefHeight="50.0" prefWidth="900.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="523.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="999.0">
                      <children>
-                        <Label fx:id="titleMenu" text="Titre qui se change">
+                        <Label fx:id="titleMenu" prefHeight="37.0" prefWidth="649.0" text="Titre qui se change">
                            <font>
                               <Font name="Berlin Sans FB" size="33.0" />
                            </font></Label>
@@ -90,7 +92,7 @@
             </ScrollPane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="900.0">
                <children>
-                  <Hyperlink fx:id="PreviousPage" stylesheets="@styles.css" onAction="#previousPage" text="Previous">
+                  <Hyperlink fx:id="PreviousPage" onAction="#previousPage" stylesheets="@styles.css" text="Previous">
                      <HBox.margin>
                         <Insets right="50.0" />
                      </HBox.margin>
@@ -113,6 +115,11 @@
    <left>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menu-bar" stylesheets="@styles.css" BorderPane.alignment="CENTER">
          <children>
+            <Button mnemonicParsing="false" onAction="#upComingButtonClick" styleClass="buttonWhite" stylesheets="@styles.css" text="Soon">
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
+            </Button>
             <Button mnemonicParsing="false" onAction="#popularMoviesButtonClick" styleClass="buttonWhite" stylesheets="@styles.css" text="Popular">
                <opaqueInsets>
                   <Insets />
@@ -126,6 +133,14 @@
                   <Insets bottom="50.0" />
                </VBox.margin>
             </Button>
+            <Separator blendMode="OVERLAY" cache="true" cacheHint="QUALITY" prefWidth="100.0" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="50.0" />
+               </padding>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Separator>
             <Button mnemonicParsing="false" onAction="#soonMoviesButtonClick" styleClass="buttonWhite" stylesheets="@styles.css" text="WatchList">
                <VBox.margin>
                   <Insets bottom="50.0" />
