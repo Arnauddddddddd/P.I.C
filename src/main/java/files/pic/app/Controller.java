@@ -125,12 +125,21 @@ public class Controller implements Initializable {
         try {
             for (int i = page * 15; i < Math.min(client.getSearchedMovies().size(), page * 15 + 15); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                URL url2 = new File("src/main/resources/files/pic/movieCard.fxml").toURI().toURL();
-                fxmlLoader.setLocation(url2);
-                HBox carbox = fxmlLoader.load();
-                MovieCard movieCard = fxmlLoader.getController();
-                movieCard.setData(client.getSearchedMovies().get(i), client);
-                movieCardLayout.getChildren().add(carbox);
+                if (client.containsMovieSeen(client.getSearchedMovies().get(i))) {
+                    URL url2 = new File("src/main/resources/files/pic/movieSeenCard.fxml").toURI().toURL();
+                    fxmlLoader.setLocation(url2);
+                    HBox carbox = fxmlLoader.load();
+                    MovieSeenCard movieSeenCard = fxmlLoader.getController();
+                    movieSeenCard.setData(client.getSearchedMovies().get(i), client);
+                    movieCardLayout.getChildren().add(carbox);
+                } else {
+                    URL url2 = new File("src/main/resources/files/pic/movieCard.fxml").toURI().toURL();
+                    fxmlLoader.setLocation(url2);
+                    HBox carbox = fxmlLoader.load();
+                    MovieCard movieCard = fxmlLoader.getController();
+                    movieCard.setData(client.getSearchedMovies().get(i), client);
+                    movieCardLayout.getChildren().add(carbox);
+                }
             }
 
         } catch (IOException e) {

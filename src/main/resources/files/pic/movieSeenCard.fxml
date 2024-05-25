@@ -23,8 +23,13 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="365.0">
                <children>
-                  <Button fx:id="addWatchList" mnemonicParsing="false" onAction="#listViewtowatch" prefHeight="25.0" prefWidth="172.0" text="WatchList" textAlignment="CENTER" />
-                  <Button fx:id="addListMoviesViewed" mnemonicParsing="false" onAction="#listMoviesViewed" prefWidth="145.0" text="MoviesViewed" />
+                  <Button fx:id="addListMoviesViewed" mnemonicParsing="false" onAction="#removeMoviesViewed" prefWidth="145.0" styleClass="buttonBlue" stylesheets="@styles.css" text="MoviesViewed" />
+                  <HBox prefHeight="100.0" prefWidth="261.0">
+                     <children>
+                        <Label fx:id="clientNote" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="102.0" text="YOUR NOTE" textFill="#d37202" />
+                        <Label fx:id="clientCommentary" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="161.0" text="YOUR COMMENTARY" textFill="#1652d3" />
+                     </children>
+                  </HBox>
                </children>
             </HBox>
           </children>

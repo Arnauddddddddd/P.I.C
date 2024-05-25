@@ -100,16 +100,17 @@ public class Client {
     }
 
     public void removeMovieSeen(Movie movie) {
+        System.out.println("sss");
         for (int i = 0; i < getMoviesSeen().size(); i++) {
             if (Objects.equals(movie.getId(), getMoviesSeen().get(i).getId())) {
-                this.moviesToWatch.remove(getMoviesSeen().get(i));
+                this.moviesSeen.remove(getMoviesSeen().get(i));
             }
         }
     }
 
     public boolean containsMovieSeen(Movie movie) {
         for (int i = 0; i < getMoviesSeen().size(); i++) {
-            if (Objects.equals(movie.getId(),  getMoviesSeen().get(i).getId())) {
+            if (Objects.equals(movie.getId(), getMoviesSeen().get(i).getId())) {
                 return true;
             }
         }

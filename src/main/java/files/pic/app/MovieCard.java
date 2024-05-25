@@ -2,6 +2,7 @@ package files.pic.app;
 
 import files.pic.Client;
 import files.pic.movie.Movie;
+import files.pic.movie.MovieSeen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -18,8 +19,8 @@ public class MovieCard {
     public Button addWatchList;
     public Button addListMoviesViewed;
     public Label movieRate;
-    private Movie movie;
-    private Client client;
+    protected Movie movie;
+    protected Client client;
 
 
     public void setData(Movie movie, Client client) {
@@ -30,7 +31,7 @@ public class MovieCard {
         movieRate.setText(String.valueOf(movie.getVoteAverage()) + " / 10");
         movieTitle.setText(movie.getTitle());
         movieResume.setText(movie.getResume());
-        if (client.containsMovieToWatch(movie)) {
+        if (client.containsMovieToWatch(movie) && movie.getClass() != MovieSeen.class) {
             this.addWatchList.setText("Remove to watch list");
         }
         if (client.containsMovieSeen(movie)) {
@@ -41,23 +42,31 @@ public class MovieCard {
 
     @FXML
     protected void listViewtowatch() {
-        if (!client.containsMovieToWatch(movie)) {
-            client.addMovieToWatch(movie);
-            this.addWatchList.setText("Remove to watch list");
-        } else {
-            client.removeMovieToWatch(movie);
-            this.addWatchList.setText("Add to watch list");
+        if (movie.getClass() != MovieSeen.class) {
+            if (!client.containsMovieToWatch(movie) && !client.containsMovieSeen(movie)) {
+                client.addMovieToWatch(movie);
+                this.addWatchList.setText("Remove to watch list");
+            } else {
+                client.removeMovieToWatch(movie);
+                this.addWatchList.setText("Add to watch list");
+            }
         }
     }
 
     @FXML
     protected void listMoviesViewed() {
         if (!client.containsMovieSeen(movie)) {
+            if (client.containsMovieToWatch(movie)) {
+                client.removeMovieToWatch(movie);
+                this.addWatchList.setText("Add to watch list");
+            }
+            this.addWatchList.setOpacity(0.35);
             client.addMovieSeen(movie);
-            this.addListMoviesViewed.setText("Remove to watch list");
+            this.addListMoviesViewed.setText("Remove to Viewed list");
         } else {
             client.removeMovieSeen(movie);
-            this.addListMoviesViewed.setText("Add to watch list");
+            this.addListMoviesViewed.setText("Add to Viewed list");
+            this.addWatchList.setOpacity(1);
         }
     }
 }
