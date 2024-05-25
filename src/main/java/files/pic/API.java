@@ -13,7 +13,7 @@ public class API {
 
     public JSONArray search(String str) {
         jsonArray = new JSONArray();
-        for (var i = 1; i < 4; i++) {
+        for (var i = 1; i < 8; i++) {
             useApi(i, "", str, null);
         }
         return jsonArray;

@@ -45,6 +45,7 @@ public class Controller implements Initializable {
     public Label pageNumber;
     public Hyperlink PreviousPage;
     public Hyperlink NextPage;
+    public ScrollPane scrollBar;
     private Integer page = 0;
 
 
@@ -89,64 +90,18 @@ public class Controller implements Initializable {
         System.out.println("Stop");
         save();
         Platform.exit();
-
-    }
-
-    @FXML
-    public void seeMoviesButtonClick(ActionEvent actionEvent) {
-        client.getSearch().setActualMoviesByMovieArray(client.getMoviesSeenMovie());
-        titleMenu.setText("Visioned Movies");
-        page = 0;
-        updateMovies(page);
     }
 
 
-
-    @FXML
-    protected void onSearchButtonClick() {
-        client.search(searchBox.getText());
-        client.getSearch().sortMovies("vote_average");
-        client.getSearch().reverseMovies();
-        titleMenu.setText("Search : " + searchBox.getText());
-        page = 0;
+    public void updatePage(String strTitleMenu, int actualPage) {
+        titleMenu.setText(strTitleMenu);
+        page = actualPage;
+        updateHUDPage();
         updateMovies(page);
-    }
-
-    @FXML
-    protected void soonMoviesButtonClick() {
-        client.getSearch().setActualMoviesByMovieArray(client.getMoviesToWatch());
-        titleMenu.setText("Upcoming Movies !");
-        page = 0;
-        updateMovies(page);
-    }
-
-    @FXML
-    protected void upComingButtonClick(ActionEvent actionEvent) {
-        client.upcomingMovies();
-        titleMenu.setText("Soon in Cinema !");
-        page = 0;
-        updateMovies(page);
-    }
-
-    @FXML
-    protected void popularMoviesButtonClick() {
-        client.popularMovies();
-        titleMenu.setText("Most popular Movies of the moment !");
-        page = 0;
-        updateMovies(page);
-    }
-
-
-    @FXML
-    protected void bestMoviesButtonClick() {
-        titleMenu.setText("Best appreciated Movies of the moment !");
-        client.bestMovies();
-        page = 0;
-        updateMovies(page);
+        scrollBar.setVvalue(0.0);
     }
 
     public void updateMovies(Integer page) {
-        updateHUDPage();
         try {
             for (int i = page * 15; i < Math.min(client.getSearchedMovies().size(), page * 15 + 15); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -175,52 +130,12 @@ public class Controller implements Initializable {
     public void updateHUDPage() {
         movieCardLayout.getChildren().clear();
         int currentPage = page + 1;
-        pageNumber.setText(Integer.toString(currentPage) + " / " + Math.max(client.getSearchedMovies().size()/15, 1));
+        pageNumber.setText(Integer.toString(currentPage) + " / " + (int) Math.ceil((double) client.getSearchedMovies().size() /15));
         NextPage.setDisable(!((page + 1) * 15 < client.getSearchedMovies().size()));
         PreviousPage.setDisable(!(page > 0));
 
     }
 
-
-
-    public void sortPopularMovies(ActionEvent actionEvent) {
-        client.getSearch().sortMovies("popularity");
-        client.getSearch().reverseMovies();
-        page = 0;
-        updateMovies(page);
-
-    }
-
-    public void sortBestRatedMovies(ActionEvent actionEvent) {
-        client.getSearch().sortMovies("vote_average");
-        client.getSearch().reverseMovies();
-        page = 0;
-        updateMovies(page);
-    }
-
-    public void sortMoreRecentMovies(ActionEvent actionEvent) {
-        client.getSearch().sortMovies("year");
-        client.getSearch().reverseMovies();
-        page = 0;
-        updateMovies(page);
-    }
-
-    public void sortLessMovies(ActionEvent actionEvent) {
-        client.getSearch().sortMovies("year");
-        page = 0;
-        updateMovies(page);
-    }
-
-
-    public void previousPage() {
-        page--;
-        updateMovies(page);
-    }
-
-    public void nextPage(ActionEvent actionEvent) {
-        page++;
-        updateMovies(page);
-    }
 
     public void save() {
         org.json.simple.JSONObject jsonObject = new org.json.simple.JSONObject();
@@ -237,6 +152,91 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
     }
+
+
+
+    public void sortPopularMovies(ActionEvent actionEvent) {
+        client.getSearch().sortMovies("popularity");
+        client.getSearch().reverseMovies();
+        updatePage(titleMenu.getText() + " : Most Popular", 0);
+
+    }
+
+    public void sortBestRatedMovies(ActionEvent actionEvent) {
+        client.getSearch().sortMovies("vote_average");
+        client.getSearch().reverseMovies();
+        updatePage(titleMenu.getText() + " : Best Rated", 0);
+
+
+    }
+
+    public void sortMoreRecentMovies(ActionEvent actionEvent) {
+        client.getSearch().sortMovies("year");
+        client.getSearch().reverseMovies();
+        updatePage(titleMenu.getText() + " : More Recent", 0);
+
+    }
+
+    public void sortLessMovies(ActionEvent actionEvent) {
+        client.getSearch().sortMovies("year");
+        updatePage(titleMenu.getText() + " : Less Recent", 0);
+
+    }
+
+
+
+    public void previousPage() {
+        page--;
+        updatePage(titleMenu.getText(), page);
+
+    }
+
+    public void nextPage(ActionEvent actionEvent) {
+        page++;
+        updatePage(titleMenu.getText(), page);
+    }
+
+
+
+    @FXML
+    protected void onSearchButtonClick() {
+        client.search(searchBox.getText());
+        client.getSearch().sortMovies("vote_average");
+        client.getSearch().reverseMovies();
+        updatePage("Search : " + searchBox.getText(), 0);
+    }
+
+    @FXML
+    protected void movieToWatchButtonClick() {
+        client.getSearch().setActualMoviesByMovieArray(client.getMoviesToWatch());
+        updatePage("Upcoming Movies !", 0);
+    }
+
+    @FXML
+    public void seeMoviesButtonClick(ActionEvent actionEvent) {
+        client.getSearch().setActualMoviesByMovieArray(client.getMoviesSeenMovie());
+        updatePage("Visioned Movies", 0);
+    }
+
+    @FXML
+    protected void upComingButtonClick(ActionEvent actionEvent) {
+        client.upcomingMovies();
+        updatePage("Soon in Cinema !", 0);
+    }
+
+    @FXML
+    protected void popularMoviesButtonClick() {
+        client.popularMovies();
+        updatePage("Most popular Movies of the moment !", 0);
+    }
+
+
+    @FXML
+    protected void bestMoviesButtonClick() {
+        updatePage("Best appreciated Movies of the moment !", 0);
+    }
+
+
 
 
 }

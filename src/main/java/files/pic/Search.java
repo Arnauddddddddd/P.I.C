@@ -40,7 +40,10 @@ public class Search {
     public void setActualMovies(JSONArray jsonList) {
         actualMovies = new ArrayList<Movie>();
         for (int i = 0; i < jsonList.length(); i++){
-            actualMovies.add(new Movie(jsonList.getJSONObject(i)));
+            Movie movie = new Movie(jsonList.getJSONObject(i));
+            if (movie.getPopularity() > 10) {
+                actualMovies.add(new Movie(jsonList.getJSONObject(i)));
+            }
         }
     }
 
