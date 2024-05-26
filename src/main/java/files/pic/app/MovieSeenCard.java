@@ -18,8 +18,8 @@ public class MovieSeenCard extends MovieCard {
     public Label clientCommentary;
 
 
-    public void setData(MovieSeen movieSeen, Client client) {
-        super.setData(movieSeen, client);
+    public void setData(MovieSeen movieSeen, Client client, Controller controller) {
+        super.setData(movieSeen, client, controller);
         addListMoviesViewed.setText(strRemoveMovieViewed);
         if (movieSeen.getNote() == null) {
             clientNote.setText("no rated");
@@ -33,11 +33,14 @@ public class MovieSeenCard extends MovieCard {
         }
     }
 
+
+
     @FXML
     protected void removeMoviesViewed() {
         if (client.containsMovieSeen(movie)) {
             client.removeMovieSeen(movie);
             this.addListMoviesViewed.setText(strAddMovieToWatch);
         }
+        controller.updatePage(controller.titleMenu.getText(), controller.getPage(), controller.scrollBar.getVvalue());
     }
 }

@@ -23,10 +23,12 @@ public class EditMovieSeenCard {
     protected Client client;
     protected Movie movie;
     private Stage stage;
+    private Controller controller;
 
-    public void setData(Movie movie, Client client, Stage stage) {
+    public void setData(Movie movie, Client client, Stage stage, Controller controller) {
         this.movie = movie;
         this.client = client;
+        this.controller = controller;
         this.stage = stage;
         Image image = new Image(movie.getImage());
         titleMovie.setText(movie.getTitle());
@@ -42,7 +44,7 @@ public class EditMovieSeenCard {
             client.getMovieSeenByMovie(movie).setNote(null);
         }
         client.getMovieSeenByMovie(movie).setCommentary(clientMovieCommentary.getText());
-        System.out.println("Saving movie seen data");
+        controller.updatePage(controller.titleMenu.getText(), controller.getPage(), controller.scrollBar.getVvalue());
         stage.close();
     }
 

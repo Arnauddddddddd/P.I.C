@@ -93,31 +93,32 @@ public class Controller implements Initializable {
     }
 
 
-    public void updatePage(String strTitleMenu, int actualPage) {
+    public void updatePage(String strTitleMenu, int actualPage, Double scrollbarValue) {
         titleMenu.setText(strTitleMenu);
         page = actualPage;
         updateHUDPage();
         updateMovies(page);
-        scrollBar.setVvalue(0.0);
+        scrollBar.setVvalue(scrollbarValue);
     }
 
     public void updateMovies(Integer page) {
         try {
             for (int i = page * 15; i < Math.min(client.getSearchedMovies().size(), page * 15 + 15); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
                 FXMLLoader fxmlLoader2 = new FXMLLoader();
                 if (client.containsMovieSeen(client.getSearchedMovies().get(i))) {
                     URL url2 = new File("src/main/resources/files/pic/movieSeenCard.fxml").toURI().toURL();
-                    fxmlLoader2.setLocation(url2);
-                    HBox carbox = fxmlLoader2.load();
-                    MovieSeenCard movieSeenCard = fxmlLoader2.getController();
-                    movieSeenCard.setData(client.getMovieSeenByMovie(client.getSearchedMovies().get(i)), client);
+                    fxmlLoader.setLocation(url2);
+                    HBox carbox = fxmlLoader.load();
+                    MovieSeenCard movieSeenCard = fxmlLoader.getController();
+                    movieSeenCard.setData(client.getMovieSeenByMovie(client.getSearchedMovies().get(i)), client, this);
                     movieCardLayout.getChildren().add(carbox);
                 } else {
                     URL url2 = new File("src/main/resources/files/pic/movieCard.fxml").toURI().toURL();
                     fxmlLoader2.setLocation(url2);
                     HBox carbox = fxmlLoader2.load();
                     MovieCard movieCard = fxmlLoader2.getController();
-                    movieCard.setData(client.getSearchedMovies().get(i), client);
+                    movieCard.setData(client.getSearchedMovies().get(i), client, this);
                     movieCardLayout.getChildren().add(carbox);
                 }
             }
@@ -158,14 +159,14 @@ public class Controller implements Initializable {
     public void sortPopularMovies(ActionEvent actionEvent) {
         client.getSearch().sortMovies("popularity");
         client.getSearch().reverseMovies();
-        updatePage(titleMenu.getText() + " : Most Popular", 0);
+        updatePage(titleMenu.getText() + " : Most Popular", 0, 0.0);
 
     }
 
     public void sortBestRatedMovies(ActionEvent actionEvent) {
         client.getSearch().sortMovies("vote_average");
         client.getSearch().reverseMovies();
-        updatePage(titleMenu.getText() + " : Best Rated", 0);
+        updatePage(titleMenu.getText() + " : Best Rated", 0, 0.0);
 
 
     }
@@ -173,13 +174,13 @@ public class Controller implements Initializable {
     public void sortMoreRecentMovies(ActionEvent actionEvent) {
         client.getSearch().sortMovies("year");
         client.getSearch().reverseMovies();
-        updatePage(titleMenu.getText() + " : More Recent", 0);
+        updatePage(titleMenu.getText() + " : More Recent", 0, 0.0);
 
     }
 
     public void sortLessMovies(ActionEvent actionEvent) {
         client.getSearch().sortMovies("year");
-        updatePage(titleMenu.getText() + " : Less Recent", 0);
+        updatePage(titleMenu.getText() + " : Less Recent", 0, 0.0);
 
     }
 
@@ -187,13 +188,13 @@ public class Controller implements Initializable {
 
     public void previousPage() {
         page--;
-        updatePage(titleMenu.getText(), page);
+        updatePage(titleMenu.getText(), page, 0.0);
 
     }
 
     public void nextPage(ActionEvent actionEvent) {
         page++;
-        updatePage(titleMenu.getText(), page);
+        updatePage(titleMenu.getText(), page, 0.0);
     }
 
 
@@ -203,41 +204,42 @@ public class Controller implements Initializable {
         client.search(searchBox.getText());
         client.getSearch().sortMovies("vote_average");
         client.getSearch().reverseMovies();
-        updatePage("Search : " + searchBox.getText(), 0);
+        updatePage("Search : " + searchBox.getText(), 0, 0.0);
     }
 
     @FXML
     protected void movieToWatchButtonClick() {
         client.getSearch().setActualMoviesByMovieArray(client.getMoviesToWatch());
-        updatePage("Upcoming Movies !", 0);
+        updatePage("Upcoming Movies !", 0, 0.0);
     }
 
     @FXML
     public void seeMoviesButtonClick(ActionEvent actionEvent) {
         client.getSearch().setActualMoviesByMovieArray(client.getMoviesSeenMovie());
-        updatePage("Visioned Movies", 0);
+        updatePage("Visioned Movies", 0, 0.0);
     }
 
     @FXML
     protected void upComingButtonClick(ActionEvent actionEvent) {
         client.upcomingMovies();
-        updatePage("Soon in Cinema !", 0);
+        updatePage("Soon in Cinema !", 0, 0.0);
     }
 
     @FXML
     protected void popularMoviesButtonClick() {
         client.popularMovies();
-        updatePage("Most popular Movies of the moment !", 0);
+        updatePage("Most popular Movies of the moment !", 0, 0.0);
     }
 
 
     @FXML
     protected void bestMoviesButtonClick() {
         client.bestMovies();
-        updatePage("Best appreciated Movies of the moment !", 0);
+        updatePage("Best appreciated Movies of the moment !", 0, 0.0);
     }
 
     public Integer getPage() {
         return page;
     }
+
 }

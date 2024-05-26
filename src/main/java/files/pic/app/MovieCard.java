@@ -21,6 +21,8 @@ import java.net.URL;
 
 public class MovieCard {
 
+    protected Controller controller;
+
     protected final String strAddMovieViewed = "Add to Viewed list";
     protected final String strRemoveMovieViewed = "Remove to Viewed list";
     protected final String strAddMovieToWatch = "Add to Watch list";
@@ -41,10 +43,11 @@ public class MovieCard {
 
 
 
-    public void setData(Movie movie, Client client) {
+    public void setData(Movie movie, Client client, Controller controller) {
         Image image = new Image(movie.getPoster());
         this.movie = movie;
         this.client = client;
+        this.controller = controller;
         moviePoster.setImage(image);
         movieRate.setText(String.format("%.1f", movie.getVoteAverage()));
         movieTitle.setText(movie.getTitle());
@@ -66,7 +69,6 @@ public class MovieCard {
             case 5, 6 -> movieRate.setTextFill(Color.ORANGE);
             case 7, 8, 9, 10 -> movieRate.setTextFill(Color.GREEN);
         }
-
     }
 
     @FXML
@@ -115,7 +117,7 @@ public class MovieCard {
         EditMovieSeenCard editMovieSeenCard = loader2.getController();
         Scene scene = new Scene(root2, 873, 322);
         stage.setScene(scene);
-        editMovieSeenCard.setData(movie, client, stage);
+        editMovieSeenCard.setData(movie, client, stage, controller);
         stage.show();
     }
 
