@@ -3,7 +3,7 @@ package files.pic.movie;
 
 public class MovieSeen extends Movie {
 
-    private Integer note;
+    private Double note;
     private String commentary;
     private Movie movie;
 
@@ -15,15 +15,15 @@ public class MovieSeen extends Movie {
         this.movie = movie;
     }
 
-    public void setNote(Integer note) {
-        this.note = note;
+    public void setNote(Double clientNote) {
+        this.note = clientNote;
     }
 
-    public void setCommentary(String commentary) {
-        this.commentary = commentary;
+    public void setCommentary(String str) {
+        this.commentary = str;
     }
 
-    public Integer getNote() {
+    public Double getNote() {
         return note;
     }
 

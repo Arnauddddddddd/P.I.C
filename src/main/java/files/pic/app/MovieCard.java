@@ -5,11 +5,19 @@ import files.pic.movie.Movie;
 import files.pic.movie.MovieSeen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 public class MovieCard {
 
@@ -20,6 +28,7 @@ public class MovieCard {
     protected Movie movie;
     protected Client client;
 
+    @FXML
     public ImageView moviePoster;
     public Label movieTitle;
     public Label movieResume;
@@ -27,6 +36,8 @@ public class MovieCard {
     public Button addWatchList;
     public Button addListMoviesViewed;
     public Label movieRate;
+    public Stage stage = new Stage();
+
 
 
 
@@ -81,10 +92,31 @@ public class MovieCard {
             this.addWatchList.setOpacity(0.35);
             client.addMovieSeen(movie);
             this.addListMoviesViewed.setText(strRemoveMovieViewed);
+            try {
+                openEditMovieSeen(movie, client);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         } else {
             client.removeMovieSeen(movie);
             this.addListMoviesViewed.setText(strAddMovieViewed);
             this.addWatchList.setOpacity(1);
         }
     }
+
+
+    public void openEditMovieSeen(Movie movie, Client client) throws Exception {
+        URL url = new File("src/main/resources/files/pic/editMovieSeenCard.fxml").toURI().toURL();
+        FXMLLoader loader2 = new FXMLLoader();
+        loader2.setLocation(url);
+        Parent root2 = loader2.load();
+
+        EditMovieSeenCard editMovieSeenCard = loader2.getController();
+        Scene scene = new Scene(root2, 873, 322);
+        stage.setScene(scene);
+        editMovieSeenCard.setData(movie, client, stage);
+        stage.show();
+    }
+
 }

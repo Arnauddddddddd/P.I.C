@@ -13,6 +13,7 @@ public class Movie {
     private final float popularity;
     private final float voteAverage;
     private final String poster;
+    private final String image;
     private final int year;
     private final String resume;
     private ArrayList<Movie> simularMovies;
@@ -25,6 +26,7 @@ public class Movie {
         voteAverage = Float.parseFloat(jsonObject.get("vote_average").toString());
         resume = jsonObject.get("overview").toString();
         poster = "https://image.tmdb.org/t/p/w500" + jsonObject.get("poster_path").toString();
+        image = "https://image.tmdb.org/t/p/w500" + jsonObject.get("backdrop_path").toString();
         simularMovies = new ArrayList<>();
 
         if (jsonObject.get("release_date").toString().length() == 10) {
@@ -79,4 +81,7 @@ public class Movie {
         return year;
     }
 
+    public String getImage() {
+        return image;
+    }
 }

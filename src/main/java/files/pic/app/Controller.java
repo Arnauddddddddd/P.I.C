@@ -104,19 +104,19 @@ public class Controller implements Initializable {
     public void updateMovies(Integer page) {
         try {
             for (int i = page * 15; i < Math.min(client.getSearchedMovies().size(), page * 15 + 15); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
+                FXMLLoader fxmlLoader2 = new FXMLLoader();
                 if (client.containsMovieSeen(client.getSearchedMovies().get(i))) {
                     URL url2 = new File("src/main/resources/files/pic/movieSeenCard.fxml").toURI().toURL();
-                    fxmlLoader.setLocation(url2);
-                    HBox carbox = fxmlLoader.load();
-                    MovieSeenCard movieSeenCard = fxmlLoader.getController();
-                    movieSeenCard.setData(client.getSearchedMovies().get(i), client);
+                    fxmlLoader2.setLocation(url2);
+                    HBox carbox = fxmlLoader2.load();
+                    MovieSeenCard movieSeenCard = fxmlLoader2.getController();
+                    movieSeenCard.setData(client.getMovieSeenByMovie(client.getSearchedMovies().get(i)), client);
                     movieCardLayout.getChildren().add(carbox);
                 } else {
                     URL url2 = new File("src/main/resources/files/pic/movieCard.fxml").toURI().toURL();
-                    fxmlLoader.setLocation(url2);
-                    HBox carbox = fxmlLoader.load();
-                    MovieCard movieCard = fxmlLoader.getController();
+                    fxmlLoader2.setLocation(url2);
+                    HBox carbox = fxmlLoader2.load();
+                    MovieCard movieCard = fxmlLoader2.getController();
                     movieCard.setData(client.getSearchedMovies().get(i), client);
                     movieCardLayout.getChildren().add(carbox);
                 }
@@ -233,10 +233,11 @@ public class Controller implements Initializable {
 
     @FXML
     protected void bestMoviesButtonClick() {
+        client.bestMovies();
         updatePage("Best appreciated Movies of the moment !", 0);
     }
 
-
-
-
+    public Integer getPage() {
+        return page;
+    }
 }

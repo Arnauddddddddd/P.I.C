@@ -18,10 +18,6 @@ public class Client {
     private ArrayList<JSONObject> moviesToWatchJSon = new ArrayList<JSONObject>();
 
 
-//    private ArrayList<Integer> moviesSeenId = new ArrayList<Integer>();
-//    private ArrayList<Integer> moviesToWatchId = new ArrayList<Integer>();
-
-
 
     public void searchMovie(String movie) {
         getSearch().setActualMovies(getSearch().getApi().search(movie));
@@ -50,6 +46,15 @@ public class Client {
 
     public ArrayList<MovieSeen> getMoviesSeen() {
         return moviesSeen;
+    }
+
+    public MovieSeen getMovieSeenByMovie(Movie movie) {
+        for (MovieSeen movieSeen : moviesSeen) {
+            if (movieSeen.getId().equals(movie.getId())) {
+                return movieSeen;
+            }
+        }
+        return null;
     }
 
     public ArrayList<Movie> getMoviesSeenMovie() {
@@ -100,7 +105,6 @@ public class Client {
     }
 
     public void removeMovieSeen(Movie movie) {
-        System.out.println("sss");
         for (int i = 0; i < getMoviesSeen().size(); i++) {
             if (Objects.equals(movie.getId(), getMoviesSeen().get(i).getId())) {
                 this.moviesSeen.remove(getMoviesSeen().get(i));
