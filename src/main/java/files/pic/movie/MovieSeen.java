@@ -1,6 +1,8 @@
 package files.pic.movie;
 
 
+import java.util.ArrayList;
+
 public class MovieSeen extends Movie {
 
     private Double note;
@@ -10,7 +12,7 @@ public class MovieSeen extends Movie {
 
     public MovieSeen(Movie movie) {
         super(movie.getJsonObject());
-        this.note = null;
+        this.note = -1.0;
         this.commentary = "";
         this.movie = movie;
     }

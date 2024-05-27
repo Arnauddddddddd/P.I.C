@@ -12,6 +12,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+import java.util.Objects;
+
 public class MovieSeenCard extends MovieCard {
 
     public Label clientNote;
@@ -21,13 +23,13 @@ public class MovieSeenCard extends MovieCard {
     public void setData(MovieSeen movieSeen, Client client, Controller controller) {
         super.setData(movieSeen, client, controller);
         addListMoviesViewed.setText(strRemoveMovieViewed);
-        if (movieSeen.getNote() == null) {
+        if (movieSeen.getNote() == -1.0) {
             clientNote.setText("no rated");
         } else {
             clientNote.setText(movieSeen.getNote().toString());
         }
-        if (movieSeen.getCommentary() == "") {
-            clientCommentary.setText("no rated");
+        if (Objects.equals(movieSeen.getCommentary(), "")) {
+            clientCommentary.setText("no comment");
         } else {
             clientCommentary.setText(movieSeen.getCommentary());
         }

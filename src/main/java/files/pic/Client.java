@@ -121,6 +121,24 @@ public class Client {
         return false;
     }
 
+    public ArrayList<Double> getClientRateMoviesSeen() {
+        ArrayList<Double> array = new ArrayList<>();
+        for ( MovieSeen movieSeen : getMoviesSeen()) {
+            array.add(movieSeen.getNote());
+        }
+        return array;
+    }
+
+    public ArrayList<String> getClientCommentMoviesSeen() {
+        ArrayList<String> array = new ArrayList<>();
+        for ( MovieSeen movieSeen : getMoviesSeen()) {
+            array.add(movieSeen.getCommentary());
+        }
+        return  array;
+    }
+
+
+
     public ArrayList<JSONObject> getMovieSeenId() {
         return moviesSeenJSon;
     }

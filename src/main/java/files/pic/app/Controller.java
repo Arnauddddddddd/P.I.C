@@ -62,6 +62,8 @@ public class Controller implements Initializable {
 
         JSONArray jsonArrayMovieToWatch = (JSONArray) jsonFile.get("MovieToWatch");
         JSONArray jsonArrayMovieSeen = (JSONArray) jsonFile.get("MovieSeen");
+        JSONArray jsonArrayMovieSeenRate = (JSONArray) jsonFile.get("MovieSeenRate");
+        JSONArray jsonArrayMovieSeenComment = (JSONArray) jsonFile.get("MovieSeenComment");
 
         if (!jsonArrayMovieToWatch.isEmpty()) {
             ArrayList<Movie> moviesToWatchDb = new ArrayList<>();
@@ -78,7 +80,10 @@ public class Controller implements Initializable {
             for (int i = 0; i < jsonArrayMovieSeen.size(); i++){
                 String object = jsonArrayMovieSeen.get(i).toString();
                 JSONObject jsonObject = new JSONObject(object);
-                moviesSeenDb.add(new MovieSeen(new Movie(jsonObject)));
+                MovieSeen movieSeen = new MovieSeen(new Movie(jsonObject));
+                movieSeen.setNote((Double) jsonArrayMovieSeenRate.get(i));
+                movieSeen.setCommentary((String) jsonArrayMovieSeenComment.get(i));
+                moviesSeenDb.add(movieSeen);
             }
             client.setMoviesSeen(moviesSeenDb);
         }
@@ -144,6 +149,9 @@ public class Controller implements Initializable {
         client.saveMovieToWatchId();
         jsonObject.put("MovieToWatch", client.getMovieToWatchId());
         jsonObject.put("MovieSeen", client.getMovieSeenId());
+        jsonObject.put("MovieSeenRate", client.getClientRateMoviesSeen());
+        jsonObject.put("MovieSeenComment", client.getClientCommentMoviesSeen());
+
 
         try {
             FileWriter file = new FileWriter("src/main/resources/files/pic/data.json");

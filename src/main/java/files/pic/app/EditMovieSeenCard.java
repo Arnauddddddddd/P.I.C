@@ -41,7 +41,7 @@ public class EditMovieSeenCard {
         try {
             client.getMovieSeenByMovie(movie).setNote(Double.parseDouble(clientMovieRate.getText()));
         } catch (Exception e) {
-            client.getMovieSeenByMovie(movie).setNote(null);
+            client.getMovieSeenByMovie(movie).setNote(-1.0);
         }
         client.getMovieSeenByMovie(movie).setCommentary(clientMovieCommentary.getText());
         controller.updatePage(controller.titleMenu.getText(), controller.getPage(), controller.scrollBar.getVvalue());
