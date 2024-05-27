@@ -209,16 +209,18 @@ public class Controller implements Initializable {
 
     @FXML
     protected void onSearchButtonClick() {
-        client.search(searchBox.getText());
-        client.getSearch().sortMovies("vote_average");
-        client.getSearch().reverseMovies();
-        updatePage("Search : " + searchBox.getText(), 0, 0.0);
+        if (!searchBox.getText().isEmpty()) {
+            client.search(searchBox.getText());
+            client.getSearch().sortMovies("vote_average");
+            client.getSearch().reverseMovies();
+            updatePage("Search : " + searchBox.getText(), 0, 0.0);
+        }
     }
 
     @FXML
     protected void movieToWatchButtonClick() {
         client.getSearch().setActualMoviesByMovieArray(client.getMoviesToWatch());
-        updatePage("Upcoming Movies !", 0, 0.0);
+        updatePage("Movies in your Watchlist !", 0, 0.0);
     }
 
     @FXML

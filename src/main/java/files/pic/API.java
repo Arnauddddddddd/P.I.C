@@ -22,7 +22,7 @@ public class API {
     public JSONArray searchSimularMovies(Integer idMovie) {
         jsonArray = new JSONArray();
         for (var i = 1; i < 2; i++) {
-            useApi(1, "","", idMovie);
+            useApi(1, "simular","", idMovie);
         }
         return jsonArray;
     }
@@ -52,18 +52,30 @@ public class API {
     }
 
 
+
     public void useApi(int page, String sort, String search, Integer idMovie) {
         String urlPage = "";
         if (!Objects.equals(search, "") && Objects.equals(sort, "")) {
             urlPage += "https://api.themoviedb.org/3/search/movie?query=" + search + "&include_adult=true&language=en-US&page=" + page;
-        } else if (idMovie != null) {
+        } else if (idMovie != null && Objects.equals(sort, "simular")) {
             urlPage += "https://api.themoviedb.org/3/movie/" + idMovie + "/similar?language=en-US&page=" + page;
         } else{
             urlPage += "https://api.themoviedb.org/3/movie/" + sort + "?language=en-US&page=" + page;
         }
+        String result = useRequest(urlPage);
+        JSONObject json = new JSONObject(result);
+        JSONArray jsonArray2 = (JSONArray) json.get("results");
+        if (!jsonArray2.isEmpty()) {
+            for (int j = 0; j < jsonArray2.length(); j++) {
+                jsonArray.put(jsonArray2.get(j));
+            }
+        }
+    }
 
+    public String useRequest(String url) {
+        String result = "";
         Request request = new Request.Builder()
-                .url(urlPage)
+                .url(url)
                 .get()
                 .addHeader("accept", "application/json")
                 .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4OWFlNDI1ZWZiNDRmNTQ0YjBhZmE3OGVjZTBmNWM2MiIsInN1YiI6IjY2MWJkMzVlZjVjODI0MDE4NzVlMzk5MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pABJ9i7rnJ1Q-9xodhK36bHFYddohEjbHgrcz-l8h-w")
@@ -71,18 +83,18 @@ public class API {
 
         try {
             Response response = client.newCall(request).execute();
-            //System.out.println(response.code());
-            String result = response.body().string();
-            JSONObject json = new JSONObject(result);
-            JSONArray jsonArray2 = (JSONArray) json.get("results");
-            if (!jsonArray2.isEmpty()) {
-                for (int j = 0; j < jsonArray2.length(); j++) {
-                    jsonArray.put(jsonArray2.get(j));
-                }
-            }
-
+            result = response.body().string();
         } catch (Exception e) {
             System.out.println(e);
         }
+        return result;
+    }
+
+    public JSONObject findDetailsByID(int idMovie) {
+        String result = useRequest("https://api.themoviedb.org/3/movie/" + idMovie);
+        JSONObject json = new JSONObject(result);
+        System.out.println(json);
+        return json;
+
     }
 }

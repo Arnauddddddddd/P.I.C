@@ -2,6 +2,7 @@ package files.pic.app;
 
 import files.pic.Client;
 import files.pic.movie.Movie;
+import files.pic.movie.MovieDetails;
 import files.pic.movie.MovieSeen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -113,7 +114,6 @@ public class MovieCard {
         FXMLLoader loader2 = new FXMLLoader();
         loader2.setLocation(url);
         Parent root2 = loader2.load();
-
         EditMovieSeenCard editMovieSeenCard = loader2.getController();
         Scene scene = new Scene(root2, 873, 322);
         stage.setScene(scene);
@@ -121,4 +121,16 @@ public class MovieCard {
         stage.show();
     }
 
+    public void showDetails(ActionEvent actionEvent) throws Exception {
+        URL url = new File("src/main/resources/files/pic/movieDetailCard.fxml").toURI().toURL();
+        FXMLLoader loader3 = new FXMLLoader();
+        loader3.setLocation(url);
+        Parent root2 = loader3.load();
+        MovieDetails movieDetails = new MovieDetails(movie);
+        MovieDetailCard movieDetailCard = loader3.getController();
+        Scene scene = new Scene(root2, 873, 500);
+        stage.setScene(scene);
+        movieDetailCard.setData(movieDetails, client, stage);
+        stage.show();
+    }
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="files.pic.app.MovieDetailCard">
+   <children>
+      <VBox prefHeight="500.0" prefWidth="272.0">
+         <children>
+            <ImageView fx:id="poster" fitHeight="225.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </VBox>
+      <VBox prefHeight="500.0" prefWidth="603.0">
+         <children>
+            <Label fx:id="movieTitle" alignment="CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="607.0" text="Label">
+               <font>
+                  <Font name="Arial Black" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="tagline" prefHeight="71.0" prefWidth="237.0" text="tagline" />
+            <Label fx:id="releaseDate" prefHeight="40.0" prefWidth="247.0" text="releaseDate" />
+            <Label fx:id="status" prefHeight="35.0" prefWidth="89.0" text="status" />
+            <Label fx:id="runtime" prefHeight="23.0" prefWidth="166.0" text="runtime" />
+            <Label fx:id="genders" prefHeight="59.0" prefWidth="80.0" text="genders" />
+            <Label fx:id="revenus" text="budget" />
+            <Label fx:id="voteAverage" prefHeight="27.0" prefWidth="164.0" text="voteAverage" />
+            <Label fx:id="resume" prefHeight="209.0" prefWidth="385.0" text="zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
+         </children>
+      </VBox>
+   </children>
+</HBox>

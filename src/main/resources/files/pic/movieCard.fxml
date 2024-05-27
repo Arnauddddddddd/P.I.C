@@ -27,6 +27,11 @@
                   <Button fx:id="addListMoviesViewed" mnemonicParsing="false" onAction="#listMoviesViewed" prefWidth="145.0" text="MoviesViewed" />
                </children>
             </HBox>
+            <Button mnemonicParsing="false" onAction="#showDetails" prefHeight="41.0" prefWidth="245.0" text="More Details" textFill="#1801b2">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Button>
           </children>
        </VBox>
       <VBox prefHeight="224.0" prefWidth="380.0">
