@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="box" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="226.0" prefWidth="850.0" styleClass="border" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="files.pic.app.MovieSeenCard">
+<HBox fx:id="box" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="226.0" prefWidth="850.0" styleClass="border" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="files.pic.app.MovieCard">
    <children>
       <ImageView fx:id="moviePoster" fitHeight="225.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" />
        <VBox alignment="CENTER" prefHeight="224.0" prefWidth="519.0">

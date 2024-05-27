@@ -30,6 +30,11 @@ public class EditMovieSeenCard {
         this.client = client;
         this.controller = controller;
         this.stage = stage;
+        clientMovieCommentary.setText(client.getMovieSeenByMovie(movie).getCommentary());
+        clientMovieRate.setText(String.valueOf(client.getMovieSeenByMovie(movie).getNote()));
+        if (client.getMovieSeenByMovie(movie).getNote() == -1) {
+            clientMovieRate.setText("");
+        }
         Image image = new Image(movie.getImage());
         titleMovie.setText(movie.getTitle());
         imageMovie.setImage(image);
@@ -39,7 +44,13 @@ public class EditMovieSeenCard {
     @FXML
     protected void saveMovieSeenData() {
         try {
-            client.getMovieSeenByMovie(movie).setNote(Double.parseDouble(clientMovieRate.getText()));
+            Double note = Double.parseDouble(clientMovieRate.getText());
+            if (note < 0) {
+                note = 0.0;
+            } else if (note > 10) {
+                note = 10.0;
+            }
+            client.getMovieSeenByMovie(movie).setNote(note);
         } catch (Exception e) {
             client.getMovieSeenByMovie(movie).setNote(-1.0);
         }

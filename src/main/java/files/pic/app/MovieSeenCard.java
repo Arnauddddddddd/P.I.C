@@ -19,7 +19,6 @@ public class MovieSeenCard extends MovieCard {
     public Label clientNote;
     public Label clientCommentary;
 
-
     public void setData(MovieSeen movieSeen, Client client, Controller controller) {
         super.setData(movieSeen, client, controller);
         addListMoviesViewed.setText(strRemoveMovieViewed);
@@ -44,5 +43,9 @@ public class MovieSeenCard extends MovieCard {
             this.addListMoviesViewed.setText(strAddMovieToWatch);
         }
         controller.updatePage(controller.titleMenu.getText(), controller.getPage(), controller.scrollBar.getVvalue());
+    }
+
+    public void editMovieSeen(ActionEvent actionEvent) throws Exception {
+        super.openEditMovieSeen(movie, client);
     }
 }

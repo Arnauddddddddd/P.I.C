@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="box" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="226.0" prefWidth="850.0" styleClass="border" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="files.pic.app.MovieSeenCard">
+<HBox fx:id="box" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="226.0" prefWidth="850.0" styleClass="border" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="files.pic.app.MovieSeenCard">
    <children>
       <ImageView fx:id="moviePoster" fitHeight="225.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" />
        <VBox alignment="CENTER" prefHeight="224.0" prefWidth="519.0">
@@ -30,6 +30,14 @@
                         <Label fx:id="clientCommentary" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="161.0" text="YOUR COMMENTARY" textFill="#1652d3" />
                      </children>
                   </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="31.0" prefWidth="409.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#editMovieSeen" prefHeight="26.0" prefWidth="406.0" text="EDIT MOVIE" textFill="#f7d105">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
                </children>
             </HBox>
           </children>
