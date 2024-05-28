@@ -23,7 +23,7 @@
          <children>
             <HBox alignment="CENTER">
                <children>
-                  <Label fx:id="movieTitle" text="TITRE">
+                  <Label fx:id="movieTitle" text="TITRE1">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -22,6 +22,8 @@ import java.net.URL;
 
 public class MovieCard {
 
+    public Hyperlink addWatchList;
+    public Hyperlink addListMoviesViewed;
     protected Controller controller;
 
     protected final String strAddMovieViewed = "Add to Viewed list";
@@ -34,10 +36,7 @@ public class MovieCard {
     @FXML
     public ImageView moviePoster;
     public Label movieTitle;
-    public Label movieResume;
     public HBox box;
-    public Button addWatchList;
-    public Button addListMoviesViewed;
     public Label movieRate;
     public Stage stage = new Stage();
 
@@ -52,7 +51,6 @@ public class MovieCard {
         moviePoster.setImage(image);
         movieRate.setText(String.format("%.1f", movie.getVoteAverage()));
         movieTitle.setText(movie.getTitle());
-        movieResume.setText(movie.getResume());
         if (!client.containsMovieSeen(movie)) {
             if (client.containsMovieToWatch(movie)) {
                 this.addWatchList.setText(strRemoveMovieToWatch);
