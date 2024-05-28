@@ -47,6 +47,11 @@
     -fx-font-weight: bold;
 }
 
+.labelBleu {
+    -fx-font-size: 12;
+    -fx-text-fill: #2778f3;
+}
+
 .hyperlink {
     -fx-text-fill: #2778f3;
 }
@@ -60,6 +65,14 @@
     -fx-text-fill: #2778f3;
     -fx-font-size: 12;
     -fx-pref-height: 25;
+    -fx-background-radius: 40;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
+}
+
+.textField {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-font-size: 12;
     -fx-background-radius: 40;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
 }
