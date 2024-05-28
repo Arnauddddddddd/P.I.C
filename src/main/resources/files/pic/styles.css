@@ -50,3 +50,16 @@
 .hyperlink {
     -fx-text-fill: #2778f3;
 }
+
+.hyperlink:hover {
+    -fx-text-fill: rgba(142, 75, 250, 0.75);
+}
+
+.buttonBoxShadow {
+    -fx-background-color: white;
+    -fx-text-fill: #2778f3;
+    -fx-font-size: 12;
+    -fx-pref-height: 25;
+    -fx-background-radius: 40;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 0);
+}
