@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.net.URL;
 
 public class MovieCard {
-
     public Hyperlink addWatchList;
     public Hyperlink addListMoviesViewed;
     protected Controller controller;

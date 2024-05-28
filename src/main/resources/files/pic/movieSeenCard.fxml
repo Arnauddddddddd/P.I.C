@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.Hyperlink?>
 <HBox fx:id="box" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="226.0" prefWidth="850.0" styleClass="border" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="files.pic.app.MovieSeenCard">
    <children>
       <ImageView fx:id="moviePoster" fitHeight="225.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" />
@@ -23,7 +24,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="365.0">
                <children>
-                  <Button fx:id="addListMoviesViewed" mnemonicParsing="false" onAction="#removeMoviesViewed" prefWidth="145.0" styleClass="buttonBlue" stylesheets="@styles.css" text="MoviesViewed" />
+                  <Hyperlink fx:id="addListMoviesViewed" mnemonicParsing="false" onAction="#removeMoviesViewed" prefWidth="145.0" styleClass="buttonBlue" stylesheets="@styles.css" text="MoviesViewed" />
                   <HBox prefHeight="100.0" prefWidth="261.0">
                      <children>
                         <Label fx:id="clientNote" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="102.0" text="YOUR NOTE" textFill="#d37202" />
