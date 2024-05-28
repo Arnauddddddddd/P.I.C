@@ -3,6 +3,7 @@ package files.pic.app;
 import files.pic.Client;
 import files.pic.movie.Movie;
 import files.pic.movie.MovieDetails;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -77,5 +78,9 @@ public class MovieDetailCard {
                 releaseDate.setText("Second poteau Pavard");
                 break;
         }
+    }
+
+    public void closeWindow(ActionEvent actionEvent) {
+        stage.close();
     }
 }

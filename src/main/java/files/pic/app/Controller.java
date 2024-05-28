@@ -18,6 +18,7 @@ import javafx.scene.control.*;
 import java.io.*;
 
 
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -205,6 +206,12 @@ public class Controller implements Initializable {
         updatePage(titleMenu.getText(), page, 0.0);
     }
 
+    public void keyUpdate(KeyCode key) {
+        if (key == KeyCode.ENTER) {
+            onSearchButtonClick();
+        }
+    }
+
 
 
     @FXML
@@ -247,6 +254,7 @@ public class Controller implements Initializable {
         client.bestMovies();
         updatePage("Best appreciated Movies of the moment !", 0, 0.0);
     }
+
 
     public Integer getPage() {
         return page;

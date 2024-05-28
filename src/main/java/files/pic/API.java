@@ -93,8 +93,6 @@ public class API {
     public JSONObject findDetailsByID(int idMovie) {
         String result = useRequest("https://api.themoviedb.org/3/movie/" + idMovie);
         JSONObject json = new JSONObject(result);
-        System.out.println(json);
         return json;
-
     }
 }

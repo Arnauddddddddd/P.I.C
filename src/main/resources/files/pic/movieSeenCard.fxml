@@ -34,10 +34,15 @@
             </HBox>
             <HBox prefHeight="31.0" prefWidth="409.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#editMovieSeen" prefHeight="26.0" prefWidth="406.0" text="EDIT MOVIE" textFill="#f7d105">
+                  <Button mnemonicParsing="false" onAction="#editMovieSeen" prefHeight="51.0" prefWidth="388.0" text="EDIT MOVIE" textFill="#f7d105">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></Button>
+                  <Button mnemonicParsing="false" onAction="#showDetails" prefHeight="31.0" prefWidth="388.0" text="SHOW DETAILS" textFill="#370bd7">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
                </children>
             </HBox>
           </children>
