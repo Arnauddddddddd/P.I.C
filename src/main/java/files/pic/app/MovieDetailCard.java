@@ -41,5 +41,41 @@ public class MovieDetailCard {
         genders.setText("Comedy.....");
         voteAverage.setText(String.valueOf(movie.getVoteAverage()));
         resume.setText(movie.getResume());
+        jokeYear();
+    }
+
+    public void jokeYear() {
+        switch (movie.getYear()) {
+            case 2005:
+                releaseDate.setText("Saboteur2005");
+                break;
+            case 1977:
+                releaseDate.setText("Année Star-Wars");
+                break;
+            case 1979:
+                releaseDate.setText("Attention au passager clandestin");
+                break;
+            case 2001:
+                releaseDate.setText("Surveillez bien vos jumelles");
+                break;
+            case 1997:
+                releaseDate.setText("Dylan");
+                break;
+            case 1999:
+                releaseDate.setText("Des étrangers ???!!!");
+                break;
+            case 2002:
+                releaseDate.setText("Ne devenez pas l'ami Gay");
+                break;
+            case 1993:
+                releaseDate.setText("Je t'écraserai à mon retour");
+                break;
+            case 1998:
+                releaseDate.setText("I will survive");
+                break;
+            case 2018:
+                releaseDate.setText("Second poteau Pavard");
+                break;
+        }
     }
 }
