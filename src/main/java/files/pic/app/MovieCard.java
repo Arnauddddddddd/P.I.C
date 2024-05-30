@@ -16,13 +16,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MovieCard {
     public Hyperlink addWatchList;
     public Hyperlink addListMoviesViewed;
+    public ImageView star1;
+    public ImageView star2;
+    public ImageView star3;
+    public ImageView star4;
+    public ImageView star5;
     protected Controller controller;
 
     protected final String strAddMovieViewed = "Add to Viewed list";
@@ -31,6 +37,7 @@ public class MovieCard {
     protected final String strRemoveMovieToWatch = "Remove to Watch list";
     protected Movie movie;
     protected Client client;
+    protected Image starFiled;
 
     @FXML
     public ImageView moviePoster;
@@ -43,11 +50,11 @@ public class MovieCard {
 
 
     public void setData(Movie movie, Client client, Controller controller) {
-        Image image = new Image(movie.getPoster());
+        Image poster = new Image(movie.getPoster());
         this.movie = movie;
         this.client = client;
         this.controller = controller;
-        moviePoster.setImage(image);
+        moviePoster.setImage(poster);
         movieRate.setText(String.format("%.1f", movie.getVoteAverage()));
         movieTitle.setText(movie.getTitle());
         if (!client.containsMovieSeen(movie)) {
@@ -62,11 +69,31 @@ public class MovieCard {
         } else {
             this.addListMoviesViewed.setText(strAddMovieViewed);
         }
-        switch (Math.round(movie.getVoteAverage())) {
+        try {
+            InputStream starFiledPath = new FileInputStream("src/main/resources/files/pic/pictures/star.png");
+            starFiled = new Image(starFiledPath);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
+        setRate();
+
+
+
+    }
+
+    public void setRate() {
+        int arroundRate = Math.round(movie.getVoteAverage());
+        int arroundInferiorRate = (int) Math.floor(movie.getVoteAverage());
+        switch (arroundRate) {
             case 0, 1, 2 -> movieRate.setTextFill(Color.RED);
             case 3 -> movieRate.setTextFill(Color.ORANGE);
             case 4, 5 -> movieRate.setTextFill(Color.GREEN);
         }
+        if (arroundInferiorRate >= 1) {star1.setImage(starFiled);}
+        if (arroundInferiorRate >= 2) {star2.setImage(starFiled);}
+        if (arroundInferiorRate >= 3) {star3.setImage(starFiled);}
+        if (arroundInferiorRate >= 4) {star4.setImage(starFiled);}
+        if (arroundInferiorRate == 5) {star5.setImage(starFiled);}
     }
 
     @FXML
@@ -89,7 +116,6 @@ public class MovieCard {
                 client.removeMovieToWatch(movie);
                 this.addWatchList.setText(strAddMovieToWatch);
             }
-            this.addWatchList.setOpacity(0.35);
             client.addMovieSeen(movie);
             this.addListMoviesViewed.setText(strRemoveMovieViewed);
             try {
@@ -101,7 +127,7 @@ public class MovieCard {
         } else {
             client.removeMovieSeen(movie);
             this.addListMoviesViewed.setText(strAddMovieViewed);
-            this.addWatchList.setOpacity(1);
+            controller.updatePage(controller.titleMenu.getText(), controller.getPage(), controller.scrollBar.getVvalue());
         }
     }
 

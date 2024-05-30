@@ -18,6 +18,7 @@ public class MovieSeenCard extends MovieCard {
 
     public Label clientNote;
     public Label clientCommentary;
+    public Label releaseDate;
 
     public void setData(MovieSeen movieSeen, Client client, Controller controller) {
         super.setData(movieSeen, client, controller);
