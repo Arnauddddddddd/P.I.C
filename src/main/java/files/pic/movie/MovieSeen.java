@@ -41,36 +41,12 @@ public class MovieSeen extends Movie {
 
     public void jokingMovie(){
         switch(movie.getId()) {
-            case 181808:
+            case 181808, 140607, 181812:
             this.note = 0.0; 
             break;  
-            
-            case 181812:
-            this.note = 0.0;
-            break;
 
-            case 140607:
-            this.note = 0.0;
-            break;
-
-            case 920:
-            this.note = 10.0;
-            break;
-
-            case 49013:
-            this.note = 10.0;
-            break;
-
-            case 260514:
-            this.note = 10.0;
-            break;
-
-            case 387:
-            this.note = 10.0;
-            break;
-
-            case 1895:
-            this.note = 10.0;
+            case 49013, 260514, 387, 1895, 920:
+            this.note = 5.0;
             break;
 
             case 60378:

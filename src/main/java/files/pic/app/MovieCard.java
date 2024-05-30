@@ -63,9 +63,9 @@ public class MovieCard {
             this.addListMoviesViewed.setText(strAddMovieViewed);
         }
         switch (Math.round(movie.getVoteAverage())) {
-            case 0, 1, 2, 3, 4 -> movieRate.setTextFill(Color.RED);
-            case 5, 6 -> movieRate.setTextFill(Color.ORANGE);
-            case 7, 8, 9, 10 -> movieRate.setTextFill(Color.GREEN);
+            case 0, 1, 2 -> movieRate.setTextFill(Color.RED);
+            case 3 -> movieRate.setTextFill(Color.ORANGE);
+            case 4, 5 -> movieRate.setTextFill(Color.GREEN);
         }
     }
 

@@ -47,8 +47,8 @@ public class EditMovieSeenCard {
             Double note = Double.parseDouble(clientMovieRate.getText());
             if (note < 0) {
                 note = 0.0;
-            } else if (note > 10) {
-                note = 10.0;
+            } else if (note > 5) {
+                note = 5.0;
             }
             client.getMovieSeenByMovie(movie).setNote(note);
         } catch (Exception e) {

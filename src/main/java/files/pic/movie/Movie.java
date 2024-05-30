@@ -23,7 +23,7 @@ public class Movie {
         id = Integer.parseInt(jsonObject.get("id").toString());
         title = jsonObject.get("title").toString();
         popularity = Float.parseFloat(jsonObject.get("popularity").toString());
-        voteAverage = Float.parseFloat(jsonObject.get("vote_average").toString());
+        voteAverage = Float.parseFloat(jsonObject.get("vote_average").toString()) / 2;
         resume = jsonObject.get("overview").toString();
         poster = "https://image.tmdb.org/t/p/w500" + jsonObject.get("poster_path").toString();
         image = "https://image.tmdb.org/t/p/w500" + jsonObject.get("backdrop_path").toString();
