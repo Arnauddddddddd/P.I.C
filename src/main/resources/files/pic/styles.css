@@ -2,7 +2,6 @@
     -fx-background-color: white;
     -fx-text-fill: #2778f3;
     -fx-font-size: 12;
-    -fx-pref-width: 75;
     -fx-pref-height: 25;
     -fx-background-radius: 40;
 }
@@ -11,7 +10,6 @@
     -fx-background-color: #2778f3;
     -fx-text-fill: white;
     -fx-font-size: 12;
-    -fx-pref-width: 75;
     -fx-pref-height: 25;
     -fx-background-radius: 40;
 }

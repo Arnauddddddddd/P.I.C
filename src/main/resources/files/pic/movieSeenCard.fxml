@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
@@ -7,53 +13,97 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.Hyperlink?>
-<HBox fx:id="box" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="226.0" prefWidth="850.0" styleClass="border" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="files.pic.app.MovieSeenCard">
+<HBox fx:id="box" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="226.0" prefWidth="850.0" styleClass="border" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="files.pic.app.MovieSeenCard">
    <children>
       <ImageView fx:id="moviePoster" fitHeight="225.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" />
        <VBox alignment="CENTER" prefHeight="224.0" prefWidth="519.0">
-          <children>
-              <Label fx:id="movieTitle" alignment="CENTER" prefHeight="43.0" prefWidth="468.0" text="TITRE" textAlignment="CENTER">
-               <font>
-                  <Font name="Arial Bold" size="32.0" />
-               </font></Label>
-              <Label fx:id="movieRate" alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="190.0" text="NOTE">
-               <font>
-                  <Font name="Sitka Small Bold" size="18.0" />
-               </font>
-            </Label>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="365.0">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+         <children>
+            <HBox alignment="CENTER">
                <children>
-                  <Hyperlink fx:id="addListMoviesViewed" mnemonicParsing="false" onAction="#removeMoviesViewed" prefWidth="145.0" styleClass="buttonBlue" stylesheets="@styles.css" text="MoviesViewed" />
-                  <HBox prefHeight="100.0" prefWidth="261.0">
-                     <children>
-                        <Label fx:id="clientNote" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="102.0" text="YOUR NOTE" textFill="#d37202" />
-                        <Label fx:id="clientCommentary" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="161.0" text="YOUR COMMENTARY" textFill="#1652d3" />
-                     </children>
-                  </HBox>
+                  <Label fx:id="movieTitle" text="TITRE1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" top="54.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Pictures/starVoid.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="2.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Pictures/star.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="4.0" />
+                     </HBox.margin>
+                  </ImageView>
+                    <Label fx:id="movieRate" alignment="CENTER" contentDisplay="TOP" text="NOTE">
+                     <font>
+                        <Font name="Sitka Small Bold" size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
-            <HBox prefHeight="31.0" prefWidth="409.0">
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="119.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#editMovieSeen" prefHeight="51.0" prefWidth="388.0" text="EDIT MOVIE" textFill="#f7d105">
+                  <Label fx:id="releaseDate" text="Release date" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="261.0">
+               <children>
+                  <Label fx:id="clientNote" alignment="CENTER" contentDisplay="CENTER" styleClass="labelBleu" stylesheets="@styles.css" text="YOUR NOTE" textFill="#d37202">
+                     <HBox.margin>
+                        <Insets left="25.0" right="25.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="clientCommentary" alignment="CENTER" contentDisplay="CENTER" styleClass="labelBleu" stylesheets="@styles.css" text="YOUR COMMENTARY" textFill="#1652d3" />
+               </children>
+            </HBox>
+         </children>
+       </VBox>
+      <VBox alignment="CENTER" prefHeight="224.0" prefWidth="380.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Hyperlink fx:id="addWatchList" onAction="#listViewtowatch" stylesheets="@styles.css" text="WatchList">
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </Hyperlink>
+                  <Hyperlink fx:id="addListMoviesViewed" onAction="#listMoviesViewed" stylesheets="@styles.css" text="MoviesViewed" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#editMovieSeen" styleClass="buttonBlue" stylesheets="@styles.css" text="Edit movie" textFill="#f7d105">
                      <font>
                         <Font name="System Bold" size="14.0" />
-                     </font></Button>
-                  <Button mnemonicParsing="false" onAction="#showDetails" prefHeight="31.0" prefWidth="388.0" text="SHOW DETAILS" textFill="#370bd7">
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#showDetails" prefHeight="41.0" prefWidth="110.0" styleClass="buttonBoxShadow" stylesheets="@styles.css" text="More Details" textFill="#1801b2">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Button>
                </children>
             </HBox>
-          </children>
-       </VBox>
-      <VBox prefHeight="224.0" prefWidth="380.0">
-         <children>
-              <Label fx:id="movieResume" lineSpacing="2.0" pickOnBounds="false" prefHeight="209.0" prefWidth="262.0" text="ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" textAlignment="RIGHT" wrapText="true">
-               <font>
-                  <Font name="Magneto Bold" size="12.0" />
-               </font></Label>
          </children>
       </VBox>
    </children>
