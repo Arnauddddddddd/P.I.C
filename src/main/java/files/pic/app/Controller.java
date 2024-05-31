@@ -50,17 +50,18 @@ public class Controller implements Initializable {
     private Integer page = 0;
 
 
+    /*
+       this function is called at startup, it loads the client's backup and adds its films to its list
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         JSONParser parser = new JSONParser();
-
         org.json.simple.JSONObject jsonFile;
         try {
             jsonFile = (org.json.simple.JSONObject) parser.parse(new FileReader("src/main/resources/files/pic/data.json"));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
         JSONArray jsonArrayMovieToWatch = (JSONArray) jsonFile.get("MovieToWatch");
         JSONArray jsonArrayMovieSeen = (JSONArray) jsonFile.get("MovieSeen");
         JSONArray jsonArrayMovieSeenRate = (JSONArray) jsonFile.get("MovieSeenRate");
@@ -75,7 +76,6 @@ public class Controller implements Initializable {
             }
             client.setMoviesToWatch(moviesToWatchDb);
         }
-
         if (!jsonArrayMovieSeen.isEmpty()) {
             ArrayList<MovieSeen> moviesSeenDb = new ArrayList<>();
             for (int i = 0; i < jsonArrayMovieSeen.size(); i++){
@@ -92,13 +92,14 @@ public class Controller implements Initializable {
 
     }
 
+    /*  this function is called when main file detect that program is closing; It executes the save function  */
     public void shutdown() {
-        System.out.println("Stop");
         save();
         Platform.exit();
     }
 
-
+    /* this function is called every time the client
+    do an action --> if he adds or removes movies for their arrays; if he changes the category of movies or sort them */
     public void updatePage(String strTitleMenu, int actualPage, Double scrollbarValue) {
         titleMenu.setText(strTitleMenu);
         page = actualPage;
@@ -107,6 +108,8 @@ public class Controller implements Initializable {
         scrollBar.setVvalue(scrollbarValue);
     }
 
+
+    /* this function updates movies in the window, for each movie, it detects if he was seen or not and generates theirs cards */
     public void updateMovies(Integer page) {
         try {
             for (int i = page * 15; i < Math.min(client.getSearchedMovies().size(), page * 15 + 15); i++) {
@@ -134,16 +137,16 @@ public class Controller implements Initializable {
         }
     }
 
+    /* this function updates HUD page like the current page, the title */
     public void updateHUDPage() {
         movieCardLayout.getChildren().clear();
         int currentPage = page + 1;
         pageNumber.setText(Integer.toString(currentPage) + " / " + (int) Math.ceil((double) client.getSearchedMovies().size() /15));
         NextPage.setDisable(!((page + 1) * 15 < client.getSearchedMovies().size()));
         PreviousPage.setDisable(!(page > 0));
-
     }
 
-
+    /* this function was called if the window is closing and add the client's movies to the json file */
     public void save() {
         org.json.simple.JSONObject jsonObject = new org.json.simple.JSONObject();
         client.saveMovieSeenId();
@@ -152,7 +155,6 @@ public class Controller implements Initializable {
         jsonObject.put("MovieSeen", client.getMovieSeenId());
         jsonObject.put("MovieSeenRate", client.getClientRateMoviesSeen());
         jsonObject.put("MovieSeenComment", client.getClientCommentMoviesSeen());
-
 
         try {
             FileWriter file = new FileWriter("src/main/resources/files/pic/data.json");
@@ -164,7 +166,7 @@ public class Controller implements Initializable {
     }
 
 
-
+    /* this function is called if the client clicks on popular sort button and sorts the actual movies*/
     public void sortPopularMovies(ActionEvent actionEvent) {
         client.getSearch().sortMovies("popularity");
         client.getSearch().reverseMovies();
@@ -172,14 +174,14 @@ public class Controller implements Initializable {
 
     }
 
+    /* this function is called if the client clicks on Best rated sort button and sorts the actual movies*/
     public void sortBestRatedMovies(ActionEvent actionEvent) {
         client.getSearch().sortMovies("vote_average");
         client.getSearch().reverseMovies();
         updatePage(titleMenu.getText() + " : Best Rated", 0, 0.0);
-
-
     }
 
+    /* this function is called if the client clicks on More recent sort button and sorts the actual movies*/
     public void sortMoreRecentMovies(ActionEvent actionEvent) {
         client.getSearch().sortMovies("year");
         client.getSearch().reverseMovies();
@@ -187,18 +189,17 @@ public class Controller implements Initializable {
 
     }
 
+    /* this function is called if the client clicks on less recent sort button and sorts the actual movies*/
     public void sortLessMovies(ActionEvent actionEvent) {
         client.getSearch().sortMovies("year");
         updatePage(titleMenu.getText() + " : Less Recent", 0, 0.0);
 
     }
 
-
-
+    /* The two functions below are called if the client push the button that corresponds to the change page */
     public void previousPage() {
         page--;
         updatePage(titleMenu.getText(), page, 0.0);
-
     }
 
     public void nextPage(ActionEvent actionEvent) {
@@ -206,6 +207,11 @@ public class Controller implements Initializable {
         updatePage(titleMenu.getText(), page, 0.0);
     }
 
+    public Integer getPage() {
+        return page;
+    }
+
+    /* the main file detect if client pressed keys and this function executes depending on the key pressed */
     public void keyUpdate(KeyCode key) {
         if (key == KeyCode.ENTER) {
             onSearchButtonClick();
@@ -213,7 +219,7 @@ public class Controller implements Initializable {
     }
 
 
-
+    /* The six functions below are called if the customer pressed the button corresponding to the called function */
     @FXML
     protected void onSearchButtonClick() {
         if (!searchBox.getText().isEmpty()) {
@@ -253,11 +259,6 @@ public class Controller implements Initializable {
     protected void bestMoviesButtonClick() {
         client.bestMovies();
         updatePage("Best appreciated Movies of the moment !", 0, 0.0);
-    }
-
-
-    public Integer getPage() {
-        return page;
     }
 
 }

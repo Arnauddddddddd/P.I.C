@@ -56,48 +56,12 @@ public class MovieCard {
 
 
     public void setData(Movie movie, Client client, Controller controller) {
-        Image poster = new Image(movie.getPoster());
         this.movie = movie;
         this.client = client;
         this.controller = controller;
-        moviePoster.setImage(poster);
-        movieRate.setText(String.format("%.1f", movie.getVoteAverage()));
-        movieTitle.setText(movie.getTitle());
-        if (!client.containsMovieSeen(movie)) {
-            if (client.containsMovieToWatch(movie)) {
-                this.addWatchList.setText(strRemoveMovieToWatch);
-            } else {
-                this.addWatchList.setText(strAddMovieToWatch);
-            }
-        }
-        if (client.containsMovieSeen(movie)) {
-            this.addListMoviesViewed.setText(strRemoveMovieViewed);
-        } else {
-            this.addListMoviesViewed.setText(strAddMovieViewed);
-        }
-        try {
-            InputStream starFiledPath = new FileInputStream("src/main/resources/files/pic/pictures/star.png");
-            InputStream starFiled25pPath = new FileInputStream("src/main/resources/files/pic/pictures/star0.25.png");
-            InputStream starFiled50pPath = new FileInputStream("src/main/resources/files/pic/pictures/star0.5.png");
-            InputStream starFiled75pPath = new FileInputStream("src/main/resources/files/pic/pictures/star0.75.png");
-            InputStream starVoidPath = new FileInputStream("src/main/resources/files/pic/pictures/starVoid.png");
-            starFiled = new Image(starFiledPath);
-            starFiled25p = new Image(starFiled25pPath);
-            starFiled50p = new Image(starFiled50pPath);
-            starFiled75p = new Image(starFiled75pPath);
-            starVoid = new Image(starVoidPath);
-            star1.setImage(starVoid);
-            star2.setImage(starVoid);
-            star3.setImage(starVoid);
-            star4.setImage(starVoid);
-            star5.setImage(starVoid);
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        }
+        setCard();
+        setImages();
         setRate();
-
-
-
     }
 
     public void setRate() {
@@ -119,6 +83,47 @@ public class MovieCard {
         else if (movie.getVoteAverage() - arroundInferiorRate >= 0.65 && movie.getVoteAverage() - arroundInferiorRate < 0.83) {setStarImage(starFiled75p);}
         else if (movie.getVoteAverage() - arroundInferiorRate >= 0.83 && movie.getVoteAverage() - arroundInferiorRate < 1 ){setStarImage(starFiled);}
         else {setStarImage(starVoid);}
+    }
+
+    public void setCard() {
+        Image poster = new Image(movie.getPoster());
+        moviePoster.setImage(poster);
+        movieRate.setText(String.format("%.1f", movie.getVoteAverage()));
+        movieTitle.setText(movie.getTitle());
+        if (!client.containsMovieSeen(movie)) {
+            if (client.containsMovieToWatch(movie)) {
+                this.addWatchList.setText(strRemoveMovieToWatch);
+            } else {
+                this.addWatchList.setText(strAddMovieToWatch);
+            }
+        }
+        if (client.containsMovieSeen(movie)) {
+            this.addListMoviesViewed.setText(strRemoveMovieViewed);
+        } else {
+            this.addListMoviesViewed.setText(strAddMovieViewed);
+        }
+    }
+
+    public void setImages() {
+        try {
+            InputStream starFiledPath = new FileInputStream("src/main/resources/files/pic/pictures/star.png");
+            InputStream starFiled25pPath = new FileInputStream("src/main/resources/files/pic/pictures/star0.25.png");
+            InputStream starFiled50pPath = new FileInputStream("src/main/resources/files/pic/pictures/star0.5.png");
+            InputStream starFiled75pPath = new FileInputStream("src/main/resources/files/pic/pictures/star0.75.png");
+            InputStream starVoidPath = new FileInputStream("src/main/resources/files/pic/pictures/starVoid.png");
+            starFiled = new Image(starFiledPath);
+            starFiled25p = new Image(starFiled25pPath);
+            starFiled50p = new Image(starFiled50pPath);
+            starFiled75p = new Image(starFiled75pPath);
+            starVoid = new Image(starVoidPath);
+            star1.setImage(starVoid);
+            star2.setImage(starVoid);
+            star3.setImage(starVoid);
+            star4.setImage(starVoid);
+            star5.setImage(starVoid);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
     }
 
     public void setStarImage(Image image) {
