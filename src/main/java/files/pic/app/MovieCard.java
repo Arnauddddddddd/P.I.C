@@ -37,7 +37,13 @@ public class MovieCard {
     protected final String strRemoveMovieToWatch = "Remove to Watch list";
     protected Movie movie;
     protected Client client;
+    protected Image starVoid;
     protected Image starFiled;
+    protected Image starFiled25p;
+    protected Image starFiled50p;
+    protected Image starFiled75p;
+
+
 
     @FXML
     public ImageView moviePoster;
@@ -71,7 +77,20 @@ public class MovieCard {
         }
         try {
             InputStream starFiledPath = new FileInputStream("src/main/resources/files/pic/pictures/star.png");
+            InputStream starFiled25pPath = new FileInputStream("src/main/resources/files/pic/pictures/star0.25.png");
+            InputStream starFiled50pPath = new FileInputStream("src/main/resources/files/pic/pictures/star0.5.png");
+            InputStream starFiled75pPath = new FileInputStream("src/main/resources/files/pic/pictures/star0.75.png");
+            InputStream starVoidPath = new FileInputStream("src/main/resources/files/pic/pictures/starVoid.png");
             starFiled = new Image(starFiledPath);
+            starFiled25p = new Image(starFiled25pPath);
+            starFiled50p = new Image(starFiled50pPath);
+            starFiled75p = new Image(starFiled75pPath);
+            starVoid = new Image(starVoidPath);
+            star1.setImage(starVoid);
+            star2.setImage(starVoid);
+            star3.setImage(starVoid);
+            star4.setImage(starVoid);
+            star5.setImage(starVoid);
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
@@ -94,6 +113,25 @@ public class MovieCard {
         if (arroundInferiorRate >= 3) {star3.setImage(starFiled);}
         if (arroundInferiorRate >= 4) {star4.setImage(starFiled);}
         if (arroundInferiorRate == 5) {star5.setImage(starFiled);}
+
+        if (movie.getVoteAverage() - arroundInferiorRate >= 0.18 && movie.getVoteAverage() - arroundInferiorRate < 0.35) {setStarImage(starFiled25p);}
+        else if (movie.getVoteAverage() - arroundInferiorRate >= 0.35 && movie.getVoteAverage() - arroundInferiorRate < 0.65) {setStarImage(starFiled50p);}
+        else if (movie.getVoteAverage() - arroundInferiorRate >= 0.65 && movie.getVoteAverage() - arroundInferiorRate < 0.83) {setStarImage(starFiled75p);}
+        else if (movie.getVoteAverage() - arroundInferiorRate >= 0.83 && movie.getVoteAverage() - arroundInferiorRate < 1 ){setStarImage(starFiled);}
+        else {setStarImage(starVoid);}
+    }
+
+    public void setStarImage(Image image) {
+        if (star1.getImage().equals(starVoid)) {
+            star1.setImage(image);}
+        else if (star2.getImage().equals(starVoid)) {
+            star2.setImage(image);}
+        else if (star3.getImage().equals(starVoid)) {
+            star3.setImage(image);}
+        else if (star4.getImage().equals(starVoid)) {
+            star4.setImage(image);}
+        else if (star5.getImage().equals(starVoid)) {
+            star5.setImage(image);}
     }
 
     @FXML
@@ -145,6 +183,7 @@ public class MovieCard {
     }
 
     public void showDetails(ActionEvent actionEvent) throws Exception {
+        System.out.println(movie.getVoteAverage() - (int) Math.floor(movie.getVoteAverage()));
         URL url = new File("src/main/resources/files/pic/movieDetailCard.fxml").toURI().toURL();
         FXMLLoader loader3 = new FXMLLoader();
         loader3.setLocation(url);
