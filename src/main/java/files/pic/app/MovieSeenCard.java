@@ -19,6 +19,11 @@ public class MovieSeenCard extends MovieCard {
     public Label clientNote;
     public Label clientCommentary;
     public Label releaseDate;
+    public ImageView clientstar1;
+    public ImageView clientstar2;
+    public ImageView clientstar3;
+    public ImageView clientstar4;
+    public ImageView clientstar5;
 
     public void setData(MovieSeen movieSeen, Client client, Controller controller) {
         super.setData(movieSeen, client, controller);
@@ -33,6 +38,10 @@ public class MovieSeenCard extends MovieCard {
         } else {
             clientCommentary.setText(movieSeen.getCommentary());
         }
+        setImages(clientstar1, clientstar2, clientstar3, clientstar4, clientstar5);
+        double movieNoteDouble = movieSeen.getNote();
+        float movieNotefloat = (float) movieNoteDouble;
+        setRate(movieNotefloat, clientstar1, clientstar2, clientstar3, clientstar4, clientstar5, clientNote);
     }
 
 

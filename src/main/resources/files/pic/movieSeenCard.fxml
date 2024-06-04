@@ -74,12 +74,33 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="261.0">
                <children>
-                  <Label fx:id="clientNote" alignment="CENTER" contentDisplay="CENTER" styleClass="labelBleu" stylesheets="@styles.css" text="YOUR NOTE" textFill="#d37202">
-                     <HBox.margin>
-                        <Insets left="25.0" right="25.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label fx:id="clientCommentary" alignment="CENTER" contentDisplay="CENTER" styleClass="labelBleu" stylesheets="@styles.css" text="YOUR COMMENTARY" textFill="#1652d3" />
+                  <ImageView fx:id="clientstar1" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Pictures/starVoid.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="clientstar2" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Pictures/starVoid.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="clientstar3" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Pictures/starVoid.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="clientstar4" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Pictures/starVoid.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="clientstar5" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Pictures/starVoid.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="clientNote" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="48.0" styleClass="labelBleu" stylesheets="@styles.css" text="YOUR NOTE" textFill="#1652d3" />
+                  <Label fx:id="clientCommentary" alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="44.0" prefHeight="71.0" prefWidth="223.0" styleClass="labelBleu" stylesheets="@styles.css" text="YOUR COMMENTARY" textFill="#1652d3" />
                </children>
             </HBox>
          </children>

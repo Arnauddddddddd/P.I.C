@@ -7,14 +7,12 @@ public class MovieSeen extends Movie {
 
     private Double note;
     private String commentary;
-    private Movie movie;
 
 
     public MovieSeen(Movie movie) {
         super(movie.getJsonObject());
         this.note = -1.0;
         this.commentary = "";
-        this.movie = movie;
     }
 
     public void setNote(Double clientNote) {
@@ -36,11 +34,11 @@ public class MovieSeen extends Movie {
     }
 
     public Movie getMovie() {
-        return movie;
+        return new Movie(this.getJsonObject());
     }
 
     public void jokingMovie(){
-        switch(movie.getId()) {
+        switch(this.getId()) {
             case 181808, 140607, 181812:
             this.note = 0.0; 
             break;  

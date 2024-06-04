@@ -40,7 +40,7 @@
                               <Font name="System Bold" size="11.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_LEFT" contentDisplay="CENTER" prefHeight="70.0" prefWidth="86.0" styleClass="labelBleu" stylesheets="@styles.css" text="/ 10" textAlignment="CENTER">
+                        <Label alignment="TOP_LEFT" contentDisplay="CENTER" prefHeight="70.0" prefWidth="86.0" styleClass="labelBleu" stylesheets="@styles.css" text="/ 5" textAlignment="CENTER">
                            <font>
                               <Font name="System Italic" size="11.0" />
                            </font>

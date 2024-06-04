@@ -60,29 +60,29 @@ public class MovieCard {
         this.client = client;
         this.controller = controller;
         setCard();
-        setImages();
-        setRate();
+        setImages(star1, star2, star3, star4, star5);
+        setRate(movie.getVoteAverage(), star1, star2, star3, star4, star5, movieRate);
     }
 
-    public void setRate() {
-        int arroundRate = Math.round(movie.getVoteAverage());
-        int arroundInferiorRate = (int) Math.floor(movie.getVoteAverage());
+    public void setRate(float number, ImageView s1, ImageView s2, ImageView s3, ImageView s4, ImageView s5, Label rateTxt) {
+        int arroundRate = Math.round(number);
+        int arroundInferiorRate = (int) Math.floor(number);
         switch (arroundRate) {
-            case 0, 1, 2 -> movieRate.setTextFill(Color.RED);
-            case 3 -> movieRate.setTextFill(Color.ORANGE);
-            case 4, 5 -> movieRate.setTextFill(Color.GREEN);
+            case 0, 1, 2 -> rateTxt.setTextFill(Color.RED);
+            case 3 -> rateTxt.setTextFill(Color.ORANGE);
+            case 4, 5 -> rateTxt.setTextFill(Color.GREEN);
         }
-        if (arroundInferiorRate >= 1) {star1.setImage(starFiled);}
-        if (arroundInferiorRate >= 2) {star2.setImage(starFiled);}
-        if (arroundInferiorRate >= 3) {star3.setImage(starFiled);}
-        if (arroundInferiorRate >= 4) {star4.setImage(starFiled);}
-        if (arroundInferiorRate == 5) {star5.setImage(starFiled);}
+        if (arroundInferiorRate >= 1) {s1.setImage(starFiled);}
+        if (arroundInferiorRate >= 2) {s2.setImage(starFiled);}
+        if (arroundInferiorRate >= 3) {s3.setImage(starFiled);}
+        if (arroundInferiorRate >= 4) {s4.setImage(starFiled);}
+        if (arroundInferiorRate == 5) {s5.setImage(starFiled);}
 
-        if (movie.getVoteAverage() - arroundInferiorRate >= 0.18 && movie.getVoteAverage() - arroundInferiorRate < 0.35) {setStarImage(starFiled25p);}
-        else if (movie.getVoteAverage() - arroundInferiorRate >= 0.35 && movie.getVoteAverage() - arroundInferiorRate < 0.65) {setStarImage(starFiled50p);}
-        else if (movie.getVoteAverage() - arroundInferiorRate >= 0.65 && movie.getVoteAverage() - arroundInferiorRate < 0.83) {setStarImage(starFiled75p);}
-        else if (movie.getVoteAverage() - arroundInferiorRate >= 0.83 && movie.getVoteAverage() - arroundInferiorRate < 1 ){setStarImage(starFiled);}
-        else {setStarImage(starVoid);}
+        if (number - arroundInferiorRate >= 0.18 && number - arroundInferiorRate < 0.35) {setStarImage(starFiled25p, s1, s2, s3, s4, s5);}
+        else if (number - arroundInferiorRate >= 0.35 && number - arroundInferiorRate < 0.65) {setStarImage(starFiled50p, s1, s2, s3, s4, s5);}
+        else if (number - arroundInferiorRate >= 0.65 && number - arroundInferiorRate < 0.83) {setStarImage(starFiled75p, s1, s2, s3, s4, s5);}
+        else if (number - arroundInferiorRate >= 0.83 && number - arroundInferiorRate < 1 ){setStarImage(starFiled, s1, s2, s3, s4, s5);}
+        else {setStarImage(starVoid, s1, s2, s3, s4, s5);}
     }
 
     public void setCard() {
@@ -104,7 +104,7 @@ public class MovieCard {
         }
     }
 
-    public void setImages() {
+    public void setImages(ImageView s1, ImageView s2, ImageView s3, ImageView s4, ImageView s5) {
         try {
             InputStream starFiledPath = new FileInputStream("src/main/resources/files/pic/pictures/star.png");
             InputStream starFiled25pPath = new FileInputStream("src/main/resources/files/pic/pictures/star0.25.png");
@@ -116,27 +116,27 @@ public class MovieCard {
             starFiled50p = new Image(starFiled50pPath);
             starFiled75p = new Image(starFiled75pPath);
             starVoid = new Image(starVoidPath);
-            star1.setImage(starVoid);
-            star2.setImage(starVoid);
-            star3.setImage(starVoid);
-            star4.setImage(starVoid);
-            star5.setImage(starVoid);
+            s1.setImage(starVoid);
+            s2.setImage(starVoid);
+            s3.setImage(starVoid);
+            s4.setImage(starVoid);
+            s5.setImage(starVoid);
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
     }
 
-    public void setStarImage(Image image) {
-        if (star1.getImage().equals(starVoid)) {
-            star1.setImage(image);}
-        else if (star2.getImage().equals(starVoid)) {
-            star2.setImage(image);}
-        else if (star3.getImage().equals(starVoid)) {
-            star3.setImage(image);}
-        else if (star4.getImage().equals(starVoid)) {
-            star4.setImage(image);}
-        else if (star5.getImage().equals(starVoid)) {
-            star5.setImage(image);}
+    public void setStarImage(Image image, ImageView s1, ImageView s2, ImageView s3, ImageView s4, ImageView s5) {
+        if (s1.getImage().equals(starVoid)) {
+            s1.setImage(image);}
+        else if (s2.getImage().equals(starVoid)) {
+            s2.setImage(image);}
+        else if (s3.getImage().equals(starVoid)) {
+            s3.setImage(image);}
+        else if (s4.getImage().equals(starVoid)) {
+            s4.setImage(image);}
+        else if (s5.getImage().equals(starVoid)) {
+            s5.setImage(image);}
     }
 
     @FXML
