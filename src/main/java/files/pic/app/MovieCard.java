@@ -22,13 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MovieCard {
-    public Hyperlink addWatchList;
-    public Hyperlink addListMoviesViewed;
-    public ImageView star1;
-    public ImageView star2;
-    public ImageView star3;
-    public ImageView star4;
-    public ImageView star5;
+
     protected Controller controller;
 
     protected final String strAddMovieViewed = "Add to Viewed list";
@@ -42,19 +36,24 @@ public class MovieCard {
     protected Image starFiled25p;
     protected Image starFiled50p;
     protected Image starFiled75p;
-
-
+    public Stage stage = new Stage();
 
     @FXML
     public ImageView moviePoster;
     public Label movieTitle;
     public HBox box;
     public Label movieRate;
-    public Stage stage = new Stage();
+    public Hyperlink addWatchList;
+    public Hyperlink addListMoviesViewed;
+    public ImageView star1;
+    public ImageView star2;
+    public ImageView star3;
+    public ImageView star4;
+    public ImageView star5;
 
 
-
-
+    /* this function is called in Controller, when creating the MovieCard,it allows you to define all the values of
+    the films on the card */
     public void setData(Movie movie, Client client, Controller controller) {
         this.movie = movie;
         this.client = client;
@@ -64,6 +63,7 @@ public class MovieCard {
         setRate(movie.getVoteAverage(), star1, star2, star3, star4, star5, movieRate);
     }
 
+    /* this function is called in setData, it allows you to define the movie notes */
     public void setRate(float number, ImageView s1, ImageView s2, ImageView s3, ImageView s4, ImageView s5, Label rateTxt) {
         int arroundRate = Math.round(number);
         int arroundInferiorRate = (int) Math.floor(number);
@@ -85,6 +85,7 @@ public class MovieCard {
         else {setStarImage(starVoid, s1, s2, s3, s4, s5);}
     }
 
+    /* this function is called in setData, it allows you to define the movie characteristic */
     public void setCard() {
         Image poster = new Image(movie.getPoster());
         moviePoster.setImage(poster);
@@ -104,6 +105,7 @@ public class MovieCard {
         }
     }
 
+    /* this function is called in setData, it allows you to load the different images of the card     */
     public void setImages(ImageView s1, ImageView s2, ImageView s3, ImageView s4, ImageView s5) {
         try {
             InputStream starFiledPath = new FileInputStream("src/main/resources/files/pic/pictures/star.png");
@@ -126,6 +128,7 @@ public class MovieCard {
         }
     }
 
+    /* this function is called in setData, it allows you to define the number of stars of the movie  */
     public void setStarImage(Image image, ImageView s1, ImageView s2, ImageView s3, ImageView s4, ImageView s5) {
         if (s1.getImage().equals(starVoid)) {
             s1.setImage(image);}
@@ -140,6 +143,7 @@ public class MovieCard {
     }
 
     @FXML
+    /* when the customer clicks add/remove View to watch, this function adds or removes the movie from the list of movies to watch */
     protected void listViewtowatch() {
         if (movie.getClass() != MovieSeen.class) {
             if (!client.containsMovieToWatch(movie) && !client.containsMovieSeen(movie)) {
@@ -153,6 +157,7 @@ public class MovieCard {
     }
 
     @FXML
+    /* when the customer clicks add/remove listview, this function adds or removes the movie from the list of movies viewed */
     protected void listMoviesViewed() {
         if (!client.containsMovieSeen(movie)) {
             if (client.containsMovieToWatch(movie)) {
@@ -174,7 +179,7 @@ public class MovieCard {
         }
     }
 
-
+    /* When the customer clicks on "Edit Movie", this function creates a new EditMovieSeenCard interface and open it */
     public void openEditMovieSeen(Movie movie, Client client) throws Exception {
         URL url = new File("src/main/resources/files/pic/editMovieSeenCard.fxml").toURI().toURL();
         FXMLLoader loader2 = new FXMLLoader();
@@ -187,6 +192,7 @@ public class MovieCard {
         stage.show();
     }
 
+    /* When the customer clicks on "more details", this function creates a new MovieDetailCard interface and open it */
     public void showDetails(ActionEvent actionEvent) throws Exception {
         System.out.println(movie.getVoteAverage() - (int) Math.floor(movie.getVoteAverage()));
         URL url = new File("src/main/resources/files/pic/movieDetailCard.fxml").toURI().toURL();

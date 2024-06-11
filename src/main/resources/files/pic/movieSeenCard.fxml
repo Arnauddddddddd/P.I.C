@@ -34,7 +34,7 @@
                <children>
                   <ImageView fx:id="star1" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Pictures/starVoid.png" />
+                        <Image url="@pictures/starVoid.png" />
                      </image>
                      <HBox.margin>
                         <Insets right="2.0" />
@@ -42,22 +42,22 @@
                   </ImageView>
                   <ImageView fx:id="star2" fitHeight="16.0" fitWidth="16.0" layoutX="251.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Pictures/starVoid.png" />
+                        <Image url="@pictures/starVoid.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="star3" fitHeight="16.0" fitWidth="16.0" layoutX="178.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Pictures/starVoid.png" />
+                        <Image url="@pictures/starVoid.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="star4" fitHeight="16.0" fitWidth="16.0" layoutX="259.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Pictures/starVoid.png" />
+                        <Image url="@pictures/starVoid.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="star5" fitHeight="16.0" fitWidth="16.0" layoutX="243.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Pictures/starVoid.png" />
+                        <Image url="@pictures/starVoid.png" />
                      </image>
                   </ImageView>
                     <Label fx:id="movieRate" alignment="CENTER" contentDisplay="TOP" text="NOTE">
@@ -76,27 +76,27 @@
                <children>
                   <ImageView fx:id="clientstar1" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Pictures/starVoid.png" />
+                        <Image url="@pictures/starVoid.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="clientstar2" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Pictures/starVoid.png" />
+                        <Image url="@pictures/starVoid.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="clientstar3" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Pictures/starVoid.png" />
+                        <Image url="@pictures/starVoid.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="clientstar4" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Pictures/starVoid.png" />
+                        <Image url="@pictures/starVoid.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="clientstar5" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Pictures/starVoid.png" />
+                        <Image url="@pictures/starVoid.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="clientNote" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="48.0" styleClass="labelBleu" stylesheets="@styles.css" text="YOUR NOTE" textFill="#1652d3" />

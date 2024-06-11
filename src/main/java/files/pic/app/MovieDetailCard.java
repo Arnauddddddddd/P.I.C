@@ -45,6 +45,7 @@ public class MovieDetailCard {
         jokeYear();
     }
 
+    /* This feature adds jokes based on the year of the movie */
     public void jokeYear() {
         switch (movie.getYear()) {
             case 2005:

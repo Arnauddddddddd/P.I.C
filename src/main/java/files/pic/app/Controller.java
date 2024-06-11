@@ -39,15 +39,16 @@ public class Controller implements Initializable {
 
     @FXML
     public TextField searchBox;
-    public Client client = new Client();
     public VBox movieCardLayout;
-    private static FileWriter file;
     public Label titleMenu;
     public Label pageNumber;
     public Hyperlink PreviousPage;
     public Hyperlink NextPage;
     public ScrollPane scrollBar;
     private Integer page = 0;
+    private static FileWriter file;
+    private final Client client = new Client();
+
 
 
     /*

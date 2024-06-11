@@ -27,6 +27,10 @@ public class MovieSeenCard extends MovieCard {
 
     public void setData(MovieSeen movieSeen, Client client, Controller controller) {
         super.setData(movieSeen, client, controller);
+        setDataMovieSeen(movieSeen);
+    }
+
+    public void setDataMovieSeen(MovieSeen movieSeen) {
         addListMoviesViewed.setText(strRemoveMovieViewed);
         if (movieSeen.getNote() == -1.0) {
             clientNote.setText("no rated");

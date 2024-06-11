@@ -4,8 +4,6 @@ import files.pic.Client;
 import files.pic.movie.Movie;
 import files.pic.movie.MovieSeen;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -40,7 +38,7 @@ public class EditMovieSeenCard {
         imageMovie.setImage(image);
     }
 
-
+    /* Saves the data that the user has entered the movie that he has rated */
     @FXML
     protected void saveMovieSeenData() {
         try {
@@ -57,11 +55,6 @@ public class EditMovieSeenCard {
         client.getMovieSeenByMovie(movie).setCommentary(clientMovieCommentary.getText());
         controller.updatePage(controller.titleMenu.getText(), controller.getPage(), controller.scrollBar.getVvalue());
         stage.close();
-    }
-
-
-    public Client getClient() {
-        return client;
     }
 
     public Movie getMovie() {
