@@ -40,6 +40,7 @@ public class MovieCard {
 
     @FXML
     public ImageView moviePoster;
+    public Label releaseDate;
     public Label movieTitle;
     public HBox box;
     public Label movieRate;
@@ -91,6 +92,7 @@ public class MovieCard {
         moviePoster.setImage(poster);
         movieRate.setText(String.format("%.1f", movie.getVoteAverage()));
         movieTitle.setText(movie.getTitle());
+        releaseDate.setText(String.valueOf(movie.getYear()));
         if (!client.containsMovieSeen(movie)) {
             if (client.containsMovieToWatch(movie)) {
                 this.addWatchList.setText(strRemoveMovieToWatch);
