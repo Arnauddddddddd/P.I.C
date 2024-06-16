@@ -37,7 +37,7 @@ public class MovieDetailCard {
         releaseDate.setText(movieDetail.getRelease_date());
         status.setText(movieDetail.getStatus());
         revenus.setText((String.valueOf(movieDetail.getRevenue())));
-        genders.setText(movie.getGenreIds());
+        genders.setText(movie.getGenreStr());
         voteAverage.setText(String.valueOf(movie.getVoteAverage()));
         resume.setText(movie.getResume());
         jokeYear();

@@ -223,11 +223,16 @@ public class Controller implements Initializable {
     /* The six functions below are called if the customer pressed the button corresponding to the called function */
     @FXML
     protected void onSearchButtonClick() {
-        if (!searchBox.getText().isEmpty()) {
-            client.search(searchBox.getText());
-            client.getSearch().sortMovies("vote_average");
-            client.getSearch().reverseMovies();
-            updatePage("Search : " + searchBox.getText(), 0, 0.0);
+        try {
+            if (!searchBox.getText().isEmpty()) {
+                client.search(searchBox.getText());
+                client.getSearch().sortMovies("vote_average");
+                client.getSearch().reverseMovies();
+                updatePage("Search : " + searchBox.getText(), 0, 0.0);
+            }
+        } catch (Exception e) {
+            popularMoviesButtonClick();
+            System.out.println("Erreur de recherche");
         }
     }
 
