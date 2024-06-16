@@ -37,7 +37,7 @@ public class MovieDetailCard {
         releaseDate.setText(movieDetail.getRelease_date());
         status.setText(movieDetail.getStatus());
         revenus.setText((String.valueOf(movieDetail.getRevenue())));
-        genders.setText("Comedy.....");
+        genders.setText(movie.getGenreIds());
         voteAverage.setText(String.valueOf(movie.getVoteAverage()));
         resume.setText(movie.getResume());
         jokeYear();
@@ -63,9 +63,6 @@ public class MovieDetailCard {
                 break;
             case 1999:
                 releaseDate.setText("Des étrangers ???!!!");
-                break;
-            case 2002:
-                releaseDate.setText("Ne devenez pas l'ami Gay");
                 break;
             case 1993:
                 releaseDate.setText("Je t'écraserai à mon retour");

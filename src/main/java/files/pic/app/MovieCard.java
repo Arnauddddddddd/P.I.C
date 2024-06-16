@@ -196,7 +196,6 @@ public class MovieCard {
 
     /* When the customer clicks on "more details", this function creates a new MovieDetailCard interface and open it */
     public void showDetails(ActionEvent actionEvent) throws Exception {
-        System.out.println(movie.getVoteAverage() - (int) Math.floor(movie.getVoteAverage()));
         URL url = new File("src/main/resources/files/pic/movieDetailCard.fxml").toURI().toURL();
         FXMLLoader loader3 = new FXMLLoader();
         loader3.setLocation(url);
