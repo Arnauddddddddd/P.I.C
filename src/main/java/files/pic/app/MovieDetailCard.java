@@ -20,7 +20,6 @@ public class MovieDetailCard {
     public Label tagline;
     public Label releaseDate;
     public Label status;
-    public Label runtime;
     public Label genders;
     public Label voteAverage;
     public Label resume;
@@ -37,7 +36,6 @@ public class MovieDetailCard {
         tagline.setText(movieDetail.getTagline());
         releaseDate.setText(movieDetail.getRelease_date());
         status.setText(movieDetail.getStatus());
-        runtime.setText(movie.getResume());
         revenus.setText((String.valueOf(movieDetail.getRevenue())));
         genders.setText("Comedy.....");
         voteAverage.setText(String.valueOf(movie.getVoteAverage()));

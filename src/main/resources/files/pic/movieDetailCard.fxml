@@ -27,17 +27,36 @@
                   <Font name="Arial Black" size="17.0" />
                </font>
             </Label>
-            <VBox alignment="CENTER" prefWidth="100.0">
+            <HBox alignment="CENTER">
                <children>
-                  <Label fx:id="voteAverage" text="voteAverage" />
-                  <Label fx:id="genders" text="genders" />
-                  <Label fx:id="tagline" text="tagline" />
-                  <Label fx:id="releaseDate" text="releaseDate" />
-                  <Label fx:id="status" text="status" />
-                  <Label fx:id="runtime" text="runtime" />
-                  <Label fx:id="revenus" text="budget" />
+                  <VBox alignment="TOP_RIGHT">
+                     <children>
+                        <Label styleClass="underline" stylesheets="@styles.css" text="Rating:" />
+                        <Label styleClass="underline" stylesheets="@styles.css" text="Type:" />
+                        <Label styleClass="underline" stylesheets="@styles.css" text="Tags:" />
+                        <Label styleClass="underline" stylesheets="@styles.css" text="Release date:" />
+                        <Label styleClass="underline" stylesheets="@styles.css" text="Status:" />
+                        <Label styleClass="underline" stylesheets="@styles.css" text="Budget:" />
+                     </children>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label fx:id="voteAverage" text="voteAverage" />
+                        <Label fx:id="genders" text="genders" />
+                        <Label fx:id="tagline" text="tagline" />
+                        <Label fx:id="releaseDate" text="releaseDate" />
+                        <Label fx:id="status" text="status" />
+                        <Label fx:id="revenus" text="budget" />
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </HBox>
             <Label fx:id="resume" alignment="CENTER" prefHeight="200.0" prefWidth="450.0" text="zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
             <HBox alignment="CENTER">
                <children>
