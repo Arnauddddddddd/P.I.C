@@ -8,7 +8,7 @@ public class MovieSeen extends Movie {
     private Double note;
     private String commentary;
 
-
+    /* we create a MovieSeen object from the movie, and we can give it the client's ratings */
     public MovieSeen(Movie movie) {
         super(movie.getJsonObject());
         this.note = -1.0;

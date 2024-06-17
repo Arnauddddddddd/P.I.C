@@ -80,15 +80,10 @@ public class Search {
         actualMovies = upcomingMovies;
     }
 
-
-
-
-
     public void setActualMoviesByMovieArray(ArrayList<Movie> movieList) {
         actualMovies = movieList;
 
     }
-
 
 
     public void sortMovies(String type) {

@@ -52,7 +52,7 @@ public class API {
     }
 
 
-
+    /* this method allows you to make a request to the api based on the parameters it contains */
     public void useApi(int page, String sort, String search, Integer idMovie) {
         String urlPage = "";
         if (!Objects.equals(search, "") && Objects.equals(sort, "")) {
@@ -90,6 +90,7 @@ public class API {
         return result;
     }
 
+    /* this method allows you to retrieve additional information about a film using its ID */
     public JSONObject findDetailsByID(int idMovie) {
         String result = useRequest("https://api.themoviedb.org/3/movie/" + idMovie);
         JSONObject json = new JSONObject(result);

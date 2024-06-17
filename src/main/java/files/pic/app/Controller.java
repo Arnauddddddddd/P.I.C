@@ -112,28 +112,41 @@ public class Controller implements Initializable {
 
     /* this function updates movies in the window, for each movie, it detects if he was seen or not and generates theirs cards */
     public void updateMovies(Integer page) {
-        try {
-            for (int i = page * 15; i < Math.min(client.getSearchedMovies().size(), page * 15 + 15); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                FXMLLoader fxmlLoader2 = new FXMLLoader();
-                if (client.containsMovieSeen(client.getSearchedMovies().get(i))) {
-                    URL url2 = new File("src/main/resources/files/pic/movieSeenCard.fxml").toURI().toURL();
-                    fxmlLoader.setLocation(url2);
-                    HBox carbox = fxmlLoader.load();
-                    MovieSeenCard movieSeenCard = fxmlLoader.getController();
-                    movieSeenCard.setData(client.getMovieSeenByMovie(client.getSearchedMovies().get(i)), client, this);
-                    movieCardLayout.getChildren().add(carbox);
-                } else {
-                    URL url2 = new File("src/main/resources/files/pic/movieCard.fxml").toURI().toURL();
-                    fxmlLoader2.setLocation(url2);
-                    HBox carbox = fxmlLoader2.load();
-                    MovieCard movieCard = fxmlLoader2.getController();
-                    movieCard.setData(client.getSearchedMovies().get(i), client, this);
-                    movieCardLayout.getChildren().add(carbox);
-                }
+        for (int i = page * 15; i < Math.min(client.getSearchedMovies().size(), page * 15 + 15); i++) {
+            if (client.containsMovieSeen(client.getSearchedMovies().get(i))) {
+                updateMovieSeen(client.getSearchedMovies().get(i));
+            } else {
+                updateMovie(client.getSearchedMovies().get(i));
             }
+        }
+    }
 
-        } catch (IOException e) {
+    /* this function update and load the card of the movieSeen in parameters  */
+    public void updateMovieSeen(Movie movie) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            URL url2 = new File("src/main/resources/files/pic/movieSeenCard.fxml").toURI().toURL();
+            fxmlLoader.setLocation(url2);
+            HBox carbox = fxmlLoader.load();
+            MovieSeenCard movieSeenCard = fxmlLoader.getController();
+            movieSeenCard.setData(client.getMovieSeenByMovie(movie), client, this);
+            movieCardLayout.getChildren().add(carbox);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /* this function update and load the card of the movie in parameters  */
+    public void updateMovie(Movie movie) {
+        try {
+            FXMLLoader fxmlLoader2 = new FXMLLoader();
+            URL url2 = new File("src/main/resources/files/pic/movieCard.fxml").toURI().toURL();
+            fxmlLoader2.setLocation(url2);
+            HBox carbox = fxmlLoader2.load();
+            MovieCard movieCard = fxmlLoader2.getController();
+            movieCard.setData(movie, client, this);
+            movieCardLayout.getChildren().add(carbox);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -23,10 +23,6 @@ public class Client {
         getSearch().setActualMovies(getSearch().getApi().search(movie));
     }
 
-    public void findDetailsMovieByID(Movie movie) {
-        getSearch().getApi().findDetailsByID(movie.getId());
-    }
-
     public void popularMovies() {
         getSearch().getPopularMovies();
     }

@@ -6,7 +6,6 @@ import org.json.*;
 import java.util.ArrayList;
 
 public class Movie {
-
     private final JSONObject jsonObject;
     private final Integer id;
     private final String title;
@@ -20,6 +19,7 @@ public class Movie {
     private String genreStr;
     private ArrayList<Movie> simularMovies;
 
+    /* we create a Movie object with various characteristics from the retrieved json */
     public Movie(JSONObject jsonObject) {
         this.jsonObject = jsonObject;
         id = Integer.parseInt(jsonObject.get("id").toString());
@@ -42,10 +42,7 @@ public class Movie {
         } else {
             year = 0;
         }
-        
     }
-
-
 
 
     public String getType(String type) {
